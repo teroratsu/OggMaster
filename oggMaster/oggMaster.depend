@@ -851,7 +851,7 @@
 	<iostream>
 	"IHM.h"
 
-1443124448 source:/home/tero/Documents/c++Folder/oggMaster/IHM.cpp
+1443818864 source:/home/tero/Documents/c++Folder/oggMaster/IHM.cpp
 	"IHM.h"
 
 1443816708 /home/tero/Documents/c++Folder/oggMaster/IHM.h
@@ -1623,4 +1623,24 @@
 
 1443819872 source:/home/tero/Documents/c++Folder/oggMaster/audioManager.cpp
 	"audioManager.h"
+
+1444252887 source:/home/tero/Documents/c++Folder/oggMaster/FFT.cpp
+	"FFT.h"
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+
+1443811276 /home/tero/Documents/c++Folder/oggMaster/FFT.h
+
+1443818390 source:/home/tero/Documents/c++Folder/oggMaster/SoundStream.cpp
+	"SoundStream.h"
+
+1444507017 source:/home/tero/Documents/c++Folder/oggMaster/src/audioManager.cpp
+	"../header/audioManager.h"
+
+1443818616 /home/tero/Documents/c++Folder/oggMaster/header/audioManager.h
+	"SoundStream.h"
+
+1443818410 /home/tero/Documents/c++Folder/oggMaster/header/SoundStream.h
+	<SFML/Audio.hpp>
 

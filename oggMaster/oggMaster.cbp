@@ -19,6 +19,7 @@
 					<Add library="sfml-audio" />
 					<Add library="sfml-graphics" />
 					<Add library="X11" />
+					<Add library="sfml-window" />
 					<Add library="sfml-system" />
 				</Linker>
 			</Target>
@@ -63,13 +64,20 @@
 			<Add directory="../SFGUI/include" />
 		</Compiler>
 		<Linker>
-			<Add library="../SFGUI/lib/libsfgui.a" />
+			<Add library="../SFGUI/lib/libsfgui.so" />
 			<Add directory="../SFML-2.3.2/lib" />
 			<Add directory="../glew-1.13.0/lib" />
 			<Add directory="../SFGUI/lib" />
 		</Linker>
+		<Unit filename="Experimental.h" />
+		<Unit filename="FFT.cpp" />
+		<Unit filename="FFT.h" />
 		<Unit filename="IHM.cpp" />
 		<Unit filename="IHM.h" />
+		<Unit filename="SoundStream.cpp" />
+		<Unit filename="SoundStream.h" />
+		<Unit filename="audioManager.cpp" />
+		<Unit filename="audioManager.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
