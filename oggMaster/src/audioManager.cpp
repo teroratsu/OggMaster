@@ -3,28 +3,37 @@
 audioManager::audioManager()
 {
     //ctor
+    _stream = std::make_shared<SoundStream>();
+    _buffer = std::make_shared<sf::SoundBuffer>();
+    _wave   = std::make_shared<SoundWave>();
+
+    this->_filename = "./bin/Debug/music.ogg"; //default file loaded
 }
 
 audioManager::audioManager(sf::String filename)
 {
     if(filename == "")
-        this->filename_ = "./bin/Debug/music.ogg";
+        this->_filename = "./bin/Debug/music.ogg"; //default file loaded
     else
-        this->filename_ = filename;
+        this->_filename = filename;
+
+    _stream = std::make_shared<SoundStream>();
+    _buffer = std::make_shared<sf::SoundBuffer>();
+    _wave   = std::make_shared<SoundWave>();
 }
 
 audioManager::~audioManager()
 {
-    stream_.stop();
+    _stream->stop();
 }
 
 bool audioManager::loadMusic(sf::String filename)
 {
     bool initBuffer;
-    if(!filename_.isEmpty())
-        initBuffer = buffer_.loadFromFile(filename);
+    if(!_filename.isEmpty())
+        initBuffer = _buffer->loadFromFile(filename);
     else
-        initBuffer = buffer_.loadFromFile(this->filename_);
+        initBuffer = _buffer->loadFromFile(_filename);
     init();
 
     return initBuffer;
@@ -32,28 +41,28 @@ bool audioManager::loadMusic(sf::String filename)
 
 void audioManager::init()
 {
-    stream_.load(buffer_);
+    _stream->load(*_buffer);
 }
 
 void audioManager::play()
 {
-    if(stream_.getStatus() != SoundStream::Playing)
-        stream_.play();
+    if(_stream->getStatus() != SoundStream::Playing)
+        _stream->play();
 }
 
 void audioManager::pause()
 {
-    if(stream_.getStatus() != SoundStream::Paused)
-        stream_.pause();
+    if(_stream->getStatus() != SoundStream::Paused)
+        _stream->pause();
 }
 
 void audioManager::stop()
 {
-    if(stream_.getStatus() != SoundStream::Stopped)
-        stream_.stop();
+    if(_stream->getStatus() != SoundStream::Stopped)
+        _stream->stop();
 }
 
 void audioManager::seek(sf::Time timeOffset)
 {
-    stream_.seek(timeOffset);
+    _stream->seek(timeOffset);
 }
