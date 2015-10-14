@@ -7,6 +7,8 @@ _logiciel audio libre (supporte les fichiers audio : ogg, wav, flac, aiff, au, r
 	- Pourquoi un tel projet
 
 #### **2. Cahier des charges**#
+	- Description du besoin
+	- Dépendances du projet
 
 #### **3. Annexes**#
 	- Ressources
@@ -22,11 +24,12 @@ L'une des fonctionnalité principale du programme sera de permettre la conversio
 L'objectif principal d'un tel projet est bien évidemment de se faire la main et d'apprendre encore et toujours de nouvelles façon de coder en C++.
 
 ###### pourquoi un tel projet #
-Ce projet est réalisé dans le cadre de notre année de Licence 3 informatique et n'a pas pour volonté d'être dévleoppé sur le long terme.
+Ce projet est réalisé dans le cadre de notre année de Licence 3 informatique et n'a pas pour volonté d'être développé sur le long terme.
 Le choix de réaliser un logiciel audio vient du fait que je souhaitais personnellement (Tero) varier mes réalisations, étant assez habitué au codage des jeux-vidéo.
 
 ### **2. Cahier des charges**#
 
+###### Description du besoin #
 Demande : Intégrer au moins 3 design pattern au projet provenant d'au moins 2 familles différentes.
 
 Fonctionnalités du logiciel : 
