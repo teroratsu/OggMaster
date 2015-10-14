@@ -37,10 +37,15 @@ Fonctionnalités du logiciel :
   - Visualisation du spectre audio (FFT -> openGl).
   - Encodage/decodage des fichiers audio (conversion wav/flac vers ogg).
   
-Le projet est réalisé en C++ et utilise les bibliothèques suivantes : SFML2.3, SFGUI, OpenGL. (et leurs dépendance
+###### Dépendances du projet #
+Le projet est réalisé en C++ et utilise les bibliothèques suivantes : [SFML2.3][1], [SFGUI][2], [OpenGL][3]. (et leurs dépendances propres)
   
 ### **3. Annexes**#
 
 ###### Ressources 2D #
 
 Aucun contenu disponible pour le moment [à venir: visuels, source du fichier audio par défaut, etc..].
+
+[1]: http://www.sfml-dev.org/index-fr.php
+[2]: http://sfgui.sfml-dev.de/p/
+[3]: http://www.opengl.org/
