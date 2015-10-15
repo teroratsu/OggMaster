@@ -5,7 +5,7 @@ IHM::IHM()
     this->fileName = "./bin/Debug/music.ogg";
 }
 
-IHM::IHM(sf::String fileName):manager(fileName)
+IHM::IHM(sf::String fileName): manager(fileName)
 {
     if(fileName == "")
         this->fileName = "./bin/Debug/music.ogg";
@@ -39,32 +39,38 @@ void IHM::OnPauseBtnClick()
     manager.pause();
 }
 
+void IHM::OnStopBtnClick()
+{
+    manager.stop();
+}
+
 void IHM::Run()
 {
-    //fada_Manager* fada = fada_newmanager();
-    //fada_freechunks(fada_newmanager());
 
     // Create SFML's window.
     sf::RenderWindow render_window( sf::VideoMode( SCREEN_WIDTH, SCREEN_HEIGHT ), "Wanna play some music ?" );
 
     // Create the label.
-    m_label = sfg::Label::Create( "Here i come" );
+    m_label = sfg::Label::Create( "Please, load a music file!");
 
     // Create a simple button and connect the click signal.
-    auto button = sfg::Button::Create( "Load music" );
-    button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnLoadBtnClick, this ) );
-    auto button1 = sfg::Button::Create( "PLAY" );
-    button1->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPlayBtnClick, this ) );
-    auto button2 = sfg::Button::Create( "STOP" );
-    button2->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPauseBtnClick, this ) );
+    auto _loadBtn = sfg::Button::Create( "LOAD" );
+    _loadBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnLoadBtnClick, this ) );
+    auto _playBtn = sfg::Button::Create( "PLAY" );
+    _playBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPlayBtnClick, this ) );
+    auto _pauseBtn = sfg::Button::Create( "PAUSE" );
+    _pauseBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPauseBtnClick, this ) );
+    auto _stopBtn = sfg::Button::Create( "STOP" );
+    _stopBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnStopBtnClick, this ) );
 
     // Create a vertical box layouter with 5 pixels spacing and add the label
     // and button to it.
-    auto box = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL, 50.0f);
+    auto box = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL,5.f);
     box->Pack( m_label );
-    box->Pack( button, false );
-    box->Pack( button1, false );
-    box->Pack( button2, false );
+    box->Pack( _loadBtn, false );
+    box->Pack( _playBtn, false );
+    box->Pack( _pauseBtn, false );
+    box->Pack( _stopBtn, false );
 
     // Create a window and add the box layouter to it. Also set the window's title.
     auto window = sfg::Window::Create();
@@ -72,8 +78,8 @@ void IHM::Run()
     window->Add( box );
 
     // Create a desktop and add the window to it.
-    sfg::Desktop desktop;
-    desktop.Add( window );
+    /*sfg::Desktop desktop;
+    desktop.Add( window );*/
 
     // We're not using SFML to render anything in this program, so reset OpenGL
     // states. Otherwise we wouldn't see anything.
@@ -93,7 +99,8 @@ void IHM::Run()
         // Event processing.
         while( render_window.pollEvent( event ) )
         {
-            desktop.HandleEvent( event );
+            //desktop.HandleEvent( event );
+            window->HandleEvent( event );
 
             // If window is about to be closed, leave program.
             if( event.type == sf::Event::Closed )
@@ -103,9 +110,10 @@ void IHM::Run()
         }
 
         // Update SFGUI with elapsed seconds since last call.
-        desktop.Update( clock.restart().asSeconds() );
+        //desktop.Update( clock.restart().asSeconds() );
 
         // Rendering.
+        window->Update( 0.f );
         render_window.clear();
         m_sfgui.Display( render_window );
         render_window.display();

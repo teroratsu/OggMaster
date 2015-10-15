@@ -46,6 +46,7 @@ bool SoundStream::onGetData(Chunk& data)
         // end not reached: stream the samples and continue
         data.sampleCount = samplesToStream;
         m_currentSample += samplesToStream;
+        _chunk = data;
         return true;
     }
     else
@@ -57,6 +58,11 @@ bool SoundStream::onGetData(Chunk& data)
     }
 }
 
+sf::SoundStream::Chunk SoundStream::getLastChunk()
+{
+    return _chunk;
+}
+
 void SoundStream::onSeek(sf::Time timeOffset)
 {
     // compute the corresponding sample index according to the sample rate and channel count
@@ -65,7 +71,6 @@ void SoundStream::onSeek(sf::Time timeOffset)
 
 void SoundStream::seek(sf::Time timeOffset)
 {
-    // test seeking music
-    m_currentSample = static_cast<std::size_t>(timeOffset.asSeconds() * getSampleRate() * getChannelCount());
+    setPlayingOffset(timeOffset);
 }
 
