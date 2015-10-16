@@ -1644,8 +1644,9 @@
 	<memory>
 	"FFT.h"
 
-1444910485 /home/tero/Documents/c++Folder/oggMaster/header/SoundStream.h
+1444993689 /home/tero/Documents/c++Folder/oggMaster/header/SoundStream.h
 	<SFML/Audio.hpp>
+	"StreamSubject.h"
 
 1444507031 source:/home/tero/Documents/c++Folder/oggMaster/src/FFT.cpp
 	"../header/FFT.h"
@@ -1655,10 +1656,10 @@
 
 1443811276 /home/tero/Documents/c++Folder/oggMaster/header/FFT.h
 
-1444916849 source:/home/tero/Documents/c++Folder/oggMaster/src/IHM.cpp
+1444945734 source:/home/tero/Documents/c++Folder/oggMaster/src/IHM.cpp
 	"../header/IHM.h"
 
-1444856639 /home/tero/Documents/c++Folder/oggMaster/header/IHM.h
+1444945709 /home/tero/Documents/c++Folder/oggMaster/header/IHM.h
 	<iostream>
 	<string>
 	<SFGUI/SFGUI.hpp>
@@ -1673,16 +1674,15 @@
 1444918417 source:/home/tero/Documents/c++Folder/oggMaster/src/SoundStream.cpp
 	"../header/SoundStream.h"
 
-1444917629 /home/tero/Documents/c++Folder/oggMaster/header/SoundWave.h
+1444992426 /home/tero/Documents/c++Folder/oggMaster/header/SoundWave.h
 	<iostream>
 	<memory>
 	"SFML/Audio.hpp"
 	"FFT.h"
-	"SoundStream.h"
+	"Observer.h"
 
-1444917645 source:/home/tero/Documents/c++Folder/oggMaster/src/SoundWave.cpp
+1444992530 source:/home/tero/Documents/c++Folder/oggMaster/src/SoundWave.cpp
 	"../header/SoundWave.h"
-	<math.h>
 
 1444859609 source:/home/tero/Documents/c++Folder/oggMaster/src/AudioManager.cpp
 	"../header/AudioManager.h"
@@ -1692,4 +1692,14 @@
 	"SoundWave.h"
 	<memory>
 	"FFT.h"
+
+1444991177 source:/home/tero/Documents/c++Folder/oggMaster/src/Observer.cpp
+	"Observer.h"
+
+1444994107 /home/tero/Documents/c++Folder/oggMaster/header/Observer.h
+	"SFML/Audio.hpp"
+
+1444994073 /home/tero/Documents/c++Folder/oggMaster/header/StreamSubject.h
+	<vector>
+	"Observer.h"
 

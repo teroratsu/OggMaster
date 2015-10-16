@@ -54,13 +54,13 @@ void IHM::Run()
     m_label = sfg::Label::Create( "Please, load a music file!");
 
     // Create a simple button and connect the click signal.
-    auto _loadBtn = sfg::Button::Create( "LOAD" );
+    _loadBtn = sfg::Button::Create( "LOAD" );
     _loadBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnLoadBtnClick, this ) );
-    auto _playBtn = sfg::Button::Create( "PLAY" );
+    _playBtn = sfg::Button::Create( "PLAY" );
     _playBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPlayBtnClick, this ) );
-    auto _pauseBtn = sfg::Button::Create( "PAUSE" );
+    _pauseBtn = sfg::Button::Create( "PAUSE" );
     _pauseBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPauseBtnClick, this ) );
-    auto _stopBtn = sfg::Button::Create( "STOP" );
+    _stopBtn = sfg::Button::Create( "STOP" );
     _stopBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnStopBtnClick, this ) );
 
     // Create a vertical box layouter with 5 pixels spacing and add the label
@@ -73,9 +73,9 @@ void IHM::Run()
     box->Pack( _stopBtn, false );
 
     // Create a window and add the box layouter to it. Also set the window's title.
-    auto window = sfg::Window::Create();
-    window->SetTitle( "OGG master" );
-    window->Add( box );
+    _window = sfg::Window::Create();
+    _window->SetTitle( "OGG master" );
+    _window->Add( box );
 
     // Create a desktop and add the window to it.
     /*sfg::Desktop desktop;
@@ -100,7 +100,7 @@ void IHM::Run()
         while( render_window.pollEvent( event ) )
         {
             //desktop.HandleEvent( event );
-            window->HandleEvent( event );
+            _window->HandleEvent( event );
 
             // If window is about to be closed, leave program.
             if( event.type == sf::Event::Closed )
@@ -113,7 +113,7 @@ void IHM::Run()
         //desktop.Update( clock.restart().asSeconds() );
 
         // Rendering.
-        window->Update( 0.f );
+        _window->Update( 0.f );
         render_window.clear();
         m_sfgui.Display( render_window );
         render_window.display();

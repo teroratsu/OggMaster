@@ -2,8 +2,9 @@
 #define SOUNDSTREAM_H
 
 #include <SFML/Audio.hpp>
+#include "StreamSubject.h"
 
-class SoundStream : public sf::SoundStream
+class SoundStream : public sf::SoundStream, public StreamSubject
 {
     public:
         SoundStream();

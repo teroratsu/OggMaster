@@ -32,8 +32,14 @@ private:
     // Create an SFGUI object. This is required before doing anything with SFGUI.
     sfg::SFGUI m_sfgui;
 
-    // Create the label pointer here to reach it from OnButtonClick().
     sfg::Label::Ptr m_label;
+    sfg::Window::Ptr _window;
+
+	//!< Create the Buttons (smart pointers)
+	sfg::Button::Ptr _loadBtn;
+	sfg::Button::Ptr _playBtn;
+	sfg::Button::Ptr _pauseBtn;
+	sfg::Button::Ptr _stopBtn;
 
     AudioManager manager;
     sf::String fileName;

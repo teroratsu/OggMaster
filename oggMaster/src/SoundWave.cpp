@@ -1,15 +1,8 @@
 #include "../header/SoundWave.h"
-#include <math.h>
 
 SoundWave::SoundWave()
 {
     //ctor
-    init();
-}
-
-SoundWave::SoundWave(std::shared_ptr<SoundStream> stream)
-{
-    _stream = stream;
     init();
 }
 
@@ -18,7 +11,7 @@ SoundWave::~SoundWave()
     //dtor
 }
 
-void SoundWave::update()
+void SoundWave::update(sf::SoundStream::Chunk& c)
 {
     float avg_power = 0.0f;
     static int index = 0;
@@ -28,7 +21,7 @@ void SoundWave::update()
     else
         index = 0;
 
-    conversionChunk(_stream->getLastChunk().samples, _stream->getLastChunk().sampleCount);
+    conversionChunk(c);
 
     _fft.powerSpectrum(0,BUFFER_SIZE/2,_chunkf,BUFFER_SIZE,&magnitude[0],&phase[0],&power[0],&avg_power); //!< gros test yolo.
 
@@ -38,12 +31,12 @@ void SoundWave::update()
     }
 }
 
-void SoundWave::conversionChunk(const sf::Int16* samples, size_t sampleCount)
+void SoundWave::conversionChunk(sf::SoundStream::Chunk& c)
 {
-    int sampleC = static_cast<int>(sampleCount);
+    int sampleC = static_cast<int>(c.sampleCount);
     _chunkf = new float[sampleC];
     for(int i=0; i< sampleC; i++)
-            _chunkf[i] = (float) samples[i] / std::numeric_limits<sf::Int16>::max(); // signed to unsigned
+            _chunkf[i] = (float) c.samples[i] / std::numeric_limits<sf::Int16>::max(); // signed to unsigned
 }
 
 void SoundWave::init()
