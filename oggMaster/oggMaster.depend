@@ -1635,12 +1635,76 @@
 1443818390 source:/home/tero/Documents/c++Folder/oggMaster/SoundStream.cpp
 	"SoundStream.h"
 
-1444507017 source:/home/tero/Documents/c++Folder/oggMaster/src/audioManager.cpp
+1444770202 source:/home/tero/Documents/c++Folder/oggMaster/src/audioManager.cpp
 	"../header/audioManager.h"
 
-1443818616 /home/tero/Documents/c++Folder/oggMaster/header/audioManager.h
+1444770142 /home/tero/Documents/c++Folder/oggMaster/header/audioManager.h
 	"SoundStream.h"
+	"SoundWave.h"
+	<memory>
+	"FFT.h"
 
-1443818410 /home/tero/Documents/c++Folder/oggMaster/header/SoundStream.h
+1445288086 /home/tero/Documents/c++Folder/oggMaster/header/SoundStream.h
 	<SFML/Audio.hpp>
+	<vector>
+	<memory>
+	"Observer.h"
+
+1444507031 source:/home/tero/Documents/c++Folder/oggMaster/src/FFT.cpp
+	"../header/FFT.h"
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+
+1443811276 /home/tero/Documents/c++Folder/oggMaster/header/FFT.h
+
+1445289349 source:/home/tero/Documents/c++Folder/oggMaster/src/IHM.cpp
+	"../header/IHM.h"
+
+1444945709 /home/tero/Documents/c++Folder/oggMaster/header/IHM.h
+	<iostream>
+	<string>
+	<SFGUI/SFGUI.hpp>
+	<SFGUI/Widgets.hpp>
+	<SFML/Graphics.hpp>
+	"AudioManager.h"
+
+1444507052 source:/home/tero/Documents/c++Folder/oggMaster/src/main.cpp
+	<iostream>
+	"../header/IHM.h"
+
+1445285902 source:/home/tero/Documents/c++Folder/oggMaster/src/SoundStream.cpp
+	"../header/SoundStream.h"
+	"../header/Observer.h"
+	<algorithm>
+
+1445288517 /home/tero/Documents/c++Folder/oggMaster/header/SoundWave.h
+	<iostream>
+	<memory>
+	"SFML/Audio.hpp"
+	"FFT.h"
+	"Observer.h"
+
+1445288925 source:/home/tero/Documents/c++Folder/oggMaster/src/SoundWave.cpp
+	"../header/SoundWave.h"
+
+1445289296 source:/home/tero/Documents/c++Folder/oggMaster/src/AudioManager.cpp
+	"../header/AudioManager.h"
+
+1445288744 /home/tero/Documents/c++Folder/oggMaster/header/AudioManager.h
+	"SoundStream.h"
+	"SoundWave.h"
+	<memory>
+	"FFT.h"
+
+1445254177 source:/home/tero/Documents/c++Folder/oggMaster/src/Observer.cpp
+	"../header/SoundStream.h"
+
+1445281834 /home/tero/Documents/c++Folder/oggMaster/header/Observer.h
+	"SFML/Audio.hpp"
+
+1445248448 /home/tero/Documents/c++Folder/oggMaster/header/StreamSubject.h
+	<vector>
+	<memory>
+	"Observer.h"
 
