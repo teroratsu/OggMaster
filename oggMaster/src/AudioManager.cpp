@@ -3,9 +3,11 @@
 AudioManager::AudioManager()
 {
     //ctor
-    _stream = std::make_shared<SoundStream>(); //!< init the _stream object with a instance of a SoundStream class
-    _buffer = std::make_shared<sf::SoundBuffer>(); //!< init the _buffer object with a instance of a sf::SoundBuffer class
-    _wave   = std::make_shared<SoundWave>(); //!< init the _wave object with a instance of a SoundWave class
+    _stream.reset(new SoundStream()); //!< init the _stream object with a instance of a SoundStream class
+    _buffer.reset(new sf::SoundBuffer()); //!< init the _buffer object with a instance of a sf::SoundBuffer class
+    _wave.reset(new SoundWave()); //!< init the _wave object with a instance of a SoundWave class
+
+    _stream->Attach(_wave.get());
 
     this->_filename = "./bin/Debug/music.ogg"; //default file loaded
 }
@@ -17,9 +19,11 @@ AudioManager::AudioManager(sf::String filename)
     else
         this->_filename = filename;
 
-    _stream = std::make_shared<SoundStream>(); //!< init the _stream object with a instance of a SoundStream class
-    _buffer = std::make_shared<sf::SoundBuffer>(); //!< init the _buffer object with a instance of a sf::SoundBuffer class
-    _wave   = std::make_shared<SoundWave>(); //!< init the _wave object with a instance of a SoundWave class
+    _stream.reset(new SoundStream()); //!< init the _stream object with a instance of a SoundStream class
+    _buffer.reset(new sf::SoundBuffer()); //!< init the _buffer object with a instance of a sf::SoundBuffer class
+    _wave.reset(new SoundWave()); //!< init the _wave object with a instance of a SoundWave class
+
+    _stream->Attach(_wave.get());
 }
 
 AudioManager::~AudioManager()
@@ -65,4 +69,13 @@ void AudioManager::stop()
 void AudioManager::seek(sf::Time timeOffset)
 {
     _stream->seek(timeOffset);
+}
+
+void AudioManager::test()
+{
+    const int BF_s = _wave->getBufferSize();
+    float* test = _wave->getMagnitude();
+    std::cout << "\nMagnitude : \n";
+    for(int i=0; i<BF_s; i++)
+        std::cout  << test[i] << "\t || \t";
 }

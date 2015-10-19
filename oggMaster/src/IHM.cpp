@@ -32,6 +32,7 @@ void IHM::PlayMusic(sf::String filename)
 void IHM::OnPlayBtnClick()
 {
     manager.play();
+    manager.test();
 }
 
 void IHM::OnPauseBtnClick()

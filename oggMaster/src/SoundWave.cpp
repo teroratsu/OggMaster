@@ -2,13 +2,12 @@
 
 SoundWave::SoundWave()
 {
-    //ctor
     init();
+
 }
 
 SoundWave::~SoundWave()
 {
-    //dtor
 }
 
 void SoundWave::update(sf::SoundStream::Chunk& c)
@@ -49,3 +48,24 @@ void SoundWave::init()
         }
     }
 }
+
+int SoundWave::getBufferSize()
+{
+    return BUFFER_SIZE;
+}
+
+float* SoundWave::getMagnitude()
+{
+    return magnitude;
+}
+
+float* SoundWave::getPhase()
+{
+    return phase;
+}
+
+float* SoundWave::getPower()
+{
+    return power;
+}
+

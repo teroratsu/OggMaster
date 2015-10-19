@@ -46,14 +46,14 @@ class AudioManager
            * Return a pointer to the SoundWave instance (usefull for graphic classes that use FFT data to display the audio spectrum).
            * @return a pointer to the SoundWave instance
         */
-        std::shared_ptr<SoundWave> getSoundWave(); //!< give the IHM class an access to soundWave public methods
+        void test();
 
     private:
         void init();//!< init Soundstream object with buffer data
 
-        std::shared_ptr<SoundStream> _stream; //!< smart pointer to the SoundStream (in order to be shared with other classes)
-        std::shared_ptr<SoundWave> _wave; //!< smart pointer to the SoundWave (in order to be shared with the IHM obj)
-        std::shared_ptr<sf::SoundBuffer> _buffer; //!< smart pointer to the SoundBuffer (in order to be shared with SoundWave & SoundStream)
+        std::unique_ptr<SoundStream> _stream; //!< smart pointer to the SoundStream (in order to be shared with other classes)
+        std::unique_ptr<SoundWave> _wave; //!< smart pointer to the SoundWave (in order to be shared with the IHM obj)
+        std::unique_ptr<sf::SoundBuffer> _buffer; //!< smart pointer to the SoundBuffer (in order to be shared with SoundWave & SoundStream)
         sf::String _filename;
 
 };

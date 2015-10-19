@@ -10,19 +10,23 @@
 #define BUFFER_SIZE 256
 #define NUM_WINDOWS 80
 
-class SoundWave : Observer
+class SoundWave : public Observer
 {
     public:
         SoundWave();
         //SoundWave(std::shared_ptr<SoundStream> buffer); //!< must be the default ctor
         virtual ~SoundWave();
 
+        int getBufferSize();
+        float* getMagnitude();
+        float* getPhase();
+        float* getPower();
     private:
+    void update(sf::SoundStream::Chunk&);
     /**
            * Initialize the freq array.
            * @see SoundWave()
     */
-    void update(sf::SoundStream::Chunk&);
     void init();
     void conversionChunk(sf::SoundStream::Chunk&);
 
