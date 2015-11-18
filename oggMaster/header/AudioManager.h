@@ -2,8 +2,11 @@
 #define AUDIOMANAGER_H
 
 #include "SoundStream.h"
+#include "FileManager.h"
 #include "SoundWave.h"
 #include <memory>
+#include <string>
+#include <sstream>
 #include "FFT.h"
 
     /*! \brief  The AudioManager handle basic operations such play, pause or stop a soundStream.
@@ -19,12 +22,6 @@ class AudioManager
 {
     public:
         AudioManager(); //!< default ctor
-        /**
-           * ctor that initialize the AudioManager filename var with the desired audio file.
-           * @param s path to the desired audio file.
-           * @see AudioManager()
-        */
-        AudioManager(sf::String s); //!< ctor handling auto file assignment
         virtual ~AudioManager(); //!< default ctor
 
         /**
@@ -32,29 +29,59 @@ class AudioManager
            * @param s : path to the desired audio file.
            * @return true if the file as been loaded correctly into the buffer
         */
-        bool loadMusic(sf::String s = ""); //!< load the file (_filename) into the soundBuffer
+        bool loadMusic(sf::String s); //!< load the file (_filename) into the soundBuffer
+        void loadMusicFromFolder(std::string); //!< load the files in the FileManager according to the folder path
         void play(); //!< play the buffer by calling the SoundStream::play() method
         void pause(); //!< pause reading buffer by calling the SoundStream::pause() method
         void stop(); //!< stop reading buffer by calling the SoundStream::stop() method
+        void next(); //!< play the next song
+        void prev(); //!< play the previous song
+
+        //void fillFileMap(std::map<std::string,File*>&); //!<map to fill
+
         /**
            * seek to the desired time by calling the SoundStream::seek() method.
            * @param t : sf::Time object to indicate the desired duration to start the buffer from.
         */
         void seek(sf::Time t); //!< seek to the desired time by calling the SoundStream::seek() method
+        void seek(const float&);
+
+        void setVolume(const float&);
+
+        float* getSoundwave();
+        float* getPower();
+        float* getPhase();
+        float getAvgPower();
+
+        std::string getCurPlayingSong() const;
 
         /**
-           * Return a pointer to the SoundWave instance (usefull for graphic classes that use FFT data to display the audio spectrum).
-           * @return a pointer to the SoundWave instance
+           * Update what need to be updated
         */
-        void test();
+        void update();
+        std::string getDuration();
+        //!< get the duration percentage 0.0f to 1.0f
+        float getDurationP();
+        float getVolume();
+        sf::SoundSource::Status getStatus();
 
     private:
         void init();//!< init Soundstream object with buffer data
+        void loadBuffer();
 
         std::unique_ptr<SoundStream> _stream; //!< smart pointer to the SoundStream (in order to be shared with other classes)
         std::unique_ptr<SoundWave> _wave; //!< smart pointer to the SoundWave (in order to be shared with the IHM obj)
-        std::unique_ptr<sf::SoundBuffer> _buffer; //!< smart pointer to the SoundBuffer (in order to be shared with SoundWave & SoundStream)
-        sf::String _filename;
+        sf::SoundBuffer* _buffer; //!< smart pointer to the SoundBuffer (in order to be shared with SoundWave & SoundStream)
+        std::unique_ptr<FileManager> _fManager;
+        bool _allowUpdateObs;
+
+        File* _curFile;
+
+        //sf::String _filename;
+
+        //! < SETTINGS > //user preference
+
+        float _volume;
 
 };
 

@@ -1,52 +1,61 @@
 #include "../header/SoundWave.h"
 
-SoundWave::SoundWave()
+SoundWave::SoundWave() : NB_CHUNKF_STORED_MAX(3)
 {
     init();
-
 }
 
 SoundWave::~SoundWave()
 {
 }
 
-void SoundWave::update(sf::SoundStream::Chunk& c)
+void SoundWave::update(sf::Time c_s)
 {
-    float avg_power = 0.0f;
-    static int index = 0;
+    _cSample = static_cast<std::size_t>(c_s.asSeconds() * _sampleRate * _channelCount) - ((int64_t)_bSample -3*50000); //!< -_bSample make it relatively to the Chunk
+    //std::cout <<_cSample << std::endl; //there is 3 buffer before the one
+    clear();
+    if(_cSample >= 0 && _cSample < 50000)
+        _fft.powerSpectrum(0,BUFFER_SIZE/2,&chunkList.front()[_cSample],BUFFER_SIZE,&magnitude[0],&phase[0],&power[0],&avg_power); //!< compute data
+}
 
-    if(index < NUM_WINDOWS)
-        index += 1;
-    else
-        index = 0;
-
-    conversionChunk(c);
-
-    _fft.powerSpectrum(0,BUFFER_SIZE/2,_chunkf,BUFFER_SIZE,&magnitude[0],&phase[0],&power[0],&avg_power); //!< gros test yolo.
-
-    for (int j=1; j<BUFFER_SIZE/2; j++)
-    {
-        freq[index][j] = magnitude[j]; //!< fill the array with corresponding data from the magnitude array
-    }
+void SoundWave::update(sf::SoundStream::Chunk& c , unsigned int s_r, unsigned int c_c, std::size_t s)
+{
+    conversionChunk(c); //convert and store the chunk
+    _sampleRate     = s_r;
+    _channelCount   = c_c;
+    _bSample        = s;
 }
 
 void SoundWave::conversionChunk(sf::SoundStream::Chunk& c)
 {
     int sampleC = static_cast<int>(c.sampleCount);
-    _chunkf = new float[sampleC];
+    chunkList.push(new float[sampleC]);
     for(int i=0; i< sampleC; i++)
-            _chunkf[i] = (float) c.samples[i] / std::numeric_limits<sf::Int16>::max(); // signed to unsigned
+            chunkList.back()[i] = (float) c.samples[i] / std::numeric_limits<sf::Int16>::max(); // signed to unsigned
+    allowUpdate = true;
+    if(chunkList.size() > NB_CHUNKF_STORED_MAX)
+    {
+        chunkList.pop();
+    }
+}
+
+void SoundWave::clear()
+{
+    for(int i=0; i < BUFFER_SIZE/2; i++)
+    {
+        magnitude[i] = 0;
+        phase[i] = 0;
+        power[i] = 0;
+    }
+    avg_power = 0.0f;
 }
 
 void SoundWave::init()
 {
-    for(int i=0; i < NUM_WINDOWS; i++)
-    {
-        for(int j=0; j < NUM_WINDOWS; j++)
-        {
-            freq[i][j] = 0;
-        }
-    }
+    std::queue<float*> empty;
+    std::swap(chunkList,empty);//empty the queue
+    _chunkf = nullptr;
+    allowUpdate = false;
 }
 
 int SoundWave::getBufferSize()
@@ -68,4 +77,10 @@ float* SoundWave::getPower()
 {
     return power;
 }
+
+float SoundWave::getAvgPower()
+{
+    return avg_power;
+}
+
 

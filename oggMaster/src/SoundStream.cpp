@@ -4,6 +4,7 @@
 SoundStream::SoundStream(Observer* obs)
 {
     Attach(obs);
+    bufferEnd = false;
 }
 
 SoundStream::SoundStream()
@@ -30,6 +31,23 @@ void SoundStream::load(const sf::SoundBuffer& buffer)
 
     // initialize the base class
     initialize(buffer.getChannelCount(), buffer.getSampleRate());
+
+    bufferEnd = false;
+}
+
+bool SoundStream::isBufferEnd()
+{
+    return bufferEnd;
+}
+
+void SoundStream::seek(sf::Time timeOffset)
+{
+    setPlayingOffset(timeOffset);
+}
+
+void SoundStream::updateObs()
+{
+    Notify(getPlayingOffset());
 }
 
 /**
@@ -61,8 +79,10 @@ bool SoundStream::onGetData(Chunk& data)
         data.sampleCount = m_samples.size() - m_currentSample;
         m_currentSample = m_samples.size();
         r_ = false;
+        bufferEnd = true;
     }
-    Notify(data);//notify observer
+    if(r_)
+        Notify(data, getSampleRate(), getChannelCount(), m_currentSample );//notify observer
     return r_;
 }
 
@@ -72,16 +92,12 @@ void SoundStream::onSeek(sf::Time timeOffset)
     m_currentSample = static_cast<std::size_t>(timeOffset.asSeconds() * getSampleRate() * getChannelCount());
 }
 
-void SoundStream::seek(sf::Time timeOffset)
-{
-    setPlayingOffset(timeOffset);
-}
-
 /**
 *      Observer pattern impementation
 **/
 
 #include <algorithm>
+
 
 void SoundStream::Attach(Observer* o)
 {
@@ -92,14 +108,28 @@ void SoundStream::Detach(Observer* o)
     _listObserver.erase(std::remove(_listObserver.begin(), _listObserver.end(), o), _listObserver.end());
 }
 
-void SoundStream::Notify(sf::SoundStream::Chunk& c)
+void SoundStream::Notify(sf::SoundStream::Chunk& c, unsigned int s_r, unsigned int c_c, std::size_t m_s)
 {
     for(std::vector<Observer*>::const_iterator iter = _listObserver.begin(); iter != _listObserver.end(); ++iter)
     {
         if(*iter != NULL)
         {
-            (*iter)->update(c);
+            (*iter)->update(c, s_r, c_c, m_s);
         }
     }
 }
+
+void SoundStream::Notify(sf::Time t)
+{
+    for(std::vector<Observer*>::const_iterator iter = _listObserver.begin(); iter != _listObserver.end(); ++iter)
+    {
+        if(*iter != NULL)
+        {
+            if(!bufferEnd)
+                (*iter)->update(t);
+        }
+    }
+}
+
+sf::Time SoundStream::getPOffset(){ return getPlayingOffset();}
 

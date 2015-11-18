@@ -2,26 +2,16 @@
 
 AudioManager::AudioManager()
 {
-    //ctor
+    _allowUpdateObs = false;
     _stream.reset(new SoundStream()); //!< init the _stream object with a instance of a SoundStream class
-    _buffer.reset(new sf::SoundBuffer()); //!< init the _buffer object with a instance of a sf::SoundBuffer class
+    _buffer = new sf::SoundBuffer(); //!< init the _buffer object with a instance of a sf::SoundBuffer class
     _wave.reset(new SoundWave()); //!< init the _wave object with a instance of a SoundWave class
+    _fManager.reset(new FileManager());
+    _curFile = _fManager->cur();
+    loadBuffer();
 
-    _stream->Attach(_wave.get());
-
-    this->_filename = "./bin/Debug/music.ogg"; //default file loaded
-}
-
-AudioManager::AudioManager(sf::String filename)
-{
-    if(filename == "")
-        this->_filename = "./bin/Debug/music.ogg"; //default file loaded
-    else
-        this->_filename = filename;
-
-    _stream.reset(new SoundStream()); //!< init the _stream object with a instance of a SoundStream class
-    _buffer.reset(new sf::SoundBuffer()); //!< init the _buffer object with a instance of a sf::SoundBuffer class
-    _wave.reset(new SoundWave()); //!< init the _wave object with a instance of a SoundWave class
+    _volume = 60;
+    _stream->setVolume(_volume);
 
     _stream->Attach(_wave.get());
 }
@@ -33,11 +23,8 @@ AudioManager::~AudioManager()
 
 bool AudioManager::loadMusic(sf::String filename)
 {
-    bool initBuffer;
-    if(!_filename.isEmpty())
-        initBuffer = _buffer->loadFromFile(filename);
-    else
-        initBuffer = _buffer->loadFromFile(_filename);
+    bool initBuffer = true;
+    initBuffer = _buffer->loadFromFile(filename);
     init();
 
     return initBuffer;
@@ -46,6 +33,8 @@ bool AudioManager::loadMusic(sf::String filename)
 void AudioManager::init()
 {
     _stream->load(*_buffer);
+    _wave->init();//clear inner data
+    _allowUpdateObs = true;
 }
 
 void AudioManager::play()
@@ -71,11 +60,121 @@ void AudioManager::seek(sf::Time timeOffset)
     _stream->seek(timeOffset);
 }
 
-void AudioManager::test()
+void AudioManager::seek(const float& t_)
 {
-    const int BF_s = _wave->getBufferSize();
-    float* test = _wave->getMagnitude();
-    std::cout << "\nMagnitude : \n";
-    for(int i=0; i<BF_s; i++)
-        std::cout  << test[i] << "\t || \t";
+    if(_stream->getStatus() == SoundStream::Stopped)
+        play();
+    _stream->seek(sf::Time(t_ * _buffer->getDuration()));
 }
+
+void AudioManager::setVolume(const float& v_)
+{
+    _stream->setVolume(v_*100);
+}
+
+float AudioManager::getVolume()
+{
+    return _stream->getVolume()/100;
+}
+
+void AudioManager::update()
+{
+    if(_stream->getStatus() == SoundStream::Playing){
+        const int BF_s = _wave->getBufferSize();
+        if(_allowUpdateObs)
+            _stream->updateObs();
+    }
+    if(_stream->getStatus() == SoundStream::Stopped)
+    {
+        if(_stream->isBufferEnd())
+            next();
+    }
+    //!< TODO implement pre-load function
+}
+
+void AudioManager::loadMusicFromFolder(std::string s)
+{
+    _fManager->findAllFiles(s,true);
+}
+
+void AudioManager::next()
+{
+    _allowUpdateObs = false;
+    stop();//stop the actual buffer
+    _curFile = _fManager->next();
+    loadBuffer();
+    //std::cout << _curFile->getBuffer()->getDuration().asSeconds() << std::endl;
+    play();
+}
+
+void AudioManager::prev()
+{
+    _allowUpdateObs = false;
+    stop();//stop the actual buffer
+    _curFile = _fManager->prev();
+    loadBuffer();
+    //std::cout << _curFile->getBuffer()->getDuration().asSeconds() << std::endl;
+    play();
+}
+
+void AudioManager::loadBuffer()
+{
+    if(!_curFile->isLoaded())//check if loaded
+        _curFile->load();
+    _buffer = _curFile->getBuffer();
+    init();
+}
+
+/*void AudioManager::fillFileMap(std::map<std::string, File* >&)
+{
+    //!< TODO implement fill function for gui
+}*/
+
+
+std::string AudioManager::getDuration(){
+     sf::Time cur = _stream->getPOffset();
+     sf::Time tot = _buffer->getDuration();
+     std::ostringstream os;
+     std::string cur_sec, tot_sec;
+     /* add a 0 if number of seconds is < 10 */
+     ((int)cur.asSeconds()%60 < 10) ? cur_sec = std::string("0" + std::to_string((int)cur.asSeconds()%60)) : cur_sec = std::to_string((int)cur.asSeconds()%60);
+     ((int)tot.asSeconds()%60 < 10) ? tot_sec = std::string("0" + std::to_string((int)tot.asSeconds()%60)) : tot_sec = std::to_string((int)tot.asSeconds()%60);
+     os << (int)cur.asSeconds()/60 << ":" << cur_sec << " / " << (int)tot.asSeconds()/60 << ":" << tot_sec;
+     return os.str();
+}
+
+float AudioManager::getDurationP()
+{
+    return _stream->getPOffset().asSeconds()/_buffer->getDuration().asSeconds();
+}
+
+sf::SoundSource::Status AudioManager::getStatus()
+{
+    return _stream->getStatus();
+}
+
+float* AudioManager::getSoundwave()
+{
+    return _wave->getMagnitude();
+}
+
+float* AudioManager::getPower()
+{
+    return _wave->getPower();
+}
+
+float* AudioManager::getPhase()
+{
+    return _wave->getPhase();
+}
+
+float AudioManager::getAvgPower()
+{
+    return _wave->getAvgPower();
+}
+
+std::string AudioManager::getCurPlayingSong() const
+{
+    return _curFile->getFilename();
+}
+

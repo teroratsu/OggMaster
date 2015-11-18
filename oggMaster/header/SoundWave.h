@@ -3,45 +3,59 @@
 
 #include <iostream>
 #include <memory>
+#include <queue>
+#include <inttypes.h>
+
 #include "SFML/Audio.hpp"
 #include "FFT.h"
 #include "Observer.h"
 
 #define BUFFER_SIZE 256
-#define NUM_WINDOWS 80
 
 class SoundWave : public Observer
 {
     public:
         SoundWave();
         //SoundWave(std::shared_ptr<SoundStream> buffer); //!< must be the default ctor
-        virtual ~SoundWave();
+        virtual ~SoundWave();//!< dtor
 
         int getBufferSize();
+        void init();
         float* getMagnitude();
         float* getPhase();
         float* getPower();
+        float getAvgPower();
     private:
-    void update(sf::SoundStream::Chunk&);
+    void update(sf::SoundStream::Chunk&, unsigned int, unsigned int, std::size_t); //!< update chunk
+    void update(sf::Time); //!< force the refresh of the data
     /**
            * Initialize the freq array.
            * @see SoundWave()
     */
-    void init();
+    void clear();
     void conversionChunk(sf::SoundStream::Chunk&);
 
     //std::shared_ptr<SoundStream> _stream; //!< audio stream to work with
+    const int NB_CHUNKF_STORED_MAX;
 
     FFT _fft;
+    std::queue<float*> chunkList;
 
-    float* _chunkf; //!<
+    float* _chunkf; //!< chunk of data converted to float
+    unsigned int _sampleRate; //!< sample rate of the actual chunk (still don't know if it can vary over time)
+    unsigned int _channelCount;
+    std::size_t _bSample; //!< base sample to compute the other ones relatively to this one
+    std::size_t _cSample; //!< The one to be compute;
+    bool allowUpdate;
 
-    float magnitude[BUFFER_SIZE]; //!< contain the magntiude data from buffer once _fft.powerSpectrum() method is called
-    float phase[BUFFER_SIZE]; //!< contain the phase data from buffer once _fft.powerSpectrum() method is called
-    float power[BUFFER_SIZE]; //!< contain the power data from buffer once _fft.powerSpectrum() method is called
+    float magnitude[BUFFER_SIZE/2]; //!< contain the magnitude data from buffer once _fft.powerSpectrum() method is called
+    float phase[BUFFER_SIZE/2]; //!< contain the phase data from buffer once _fft.powerSpectrum() method is called
+    float power[BUFFER_SIZE/2]; //!< contain the power data from buffer once _fft.powerSpectrum() method is called
 
-    float freq[NUM_WINDOWS][BUFFER_SIZE/2];
-    float freq_phase[NUM_WINDOWS][BUFFER_SIZE/2];
+    float avg_power;
+
+    //float freq[NUM_WINDOWS][BUFFER_SIZE/2];
+    //float freq_phase[NUM_WINDOWS][BUFFER_SIZE/2];
 };
 
 #endif // SOUNDWAVE_H

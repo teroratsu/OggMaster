@@ -64,21 +64,31 @@
 			<Add directory="../SFML-2.3.2/include" />
 			<Add directory="../glew-1.13.0/include" />
 			<Add directory="../SFGUI/include" />
+			<Add directory="../boost/" />
 		</Compiler>
 		<Linker>
 			<Add library="../SFGUI/lib/libsfgui.so" />
+			<Add library="boost_filesystem" />
+			<Add library="boost_system" />
 			<Add directory="../SFML-2.3.2/lib" />
 			<Add directory="../glew-1.13.0/lib" />
 			<Add directory="../SFGUI/lib" />
+			<Add directory="../boost/stage/lib" />
 		</Linker>
 		<Unit filename="header/AudioManager.h" />
 		<Unit filename="header/Experimental.h" />
 		<Unit filename="header/FFT.h" />
+		<Unit filename="header/File.h" />
+		<Unit filename="header/FileMaker.h" />
+		<Unit filename="header/FileManager.h" />
 		<Unit filename="header/IHM.h" />
 		<Unit filename="header/SoundStream.h" />
 		<Unit filename="header/SoundWave.h" />
 		<Unit filename="src/AudioManager.cpp" />
 		<Unit filename="src/FFT.cpp" />
+		<Unit filename="src/File.cpp" />
+		<Unit filename="src/FileMaker.cpp" />
+		<Unit filename="src/FileManager.cpp" />
 		<Unit filename="src/IHM.cpp" />
 		<Unit filename="src/SoundStream.cpp" />
 		<Unit filename="src/SoundWave.cpp" />
