@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-network" />
@@ -33,6 +34,7 @@
 					<Add option="-DSFML_STATIC" />
 					<Add option="-DGLEW_STATIC" />
 					<Add option="-DSFGUI_STATIC" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -62,23 +64,35 @@
 			<Add directory="../SFML-2.3.2/include" />
 			<Add directory="../glew-1.13.0/include" />
 			<Add directory="../SFGUI/include" />
+			<Add directory="../boost/" />
 		</Compiler>
 		<Linker>
 			<Add library="../SFGUI/lib/libsfgui.so" />
+			<Add library="boost_filesystem" />
+			<Add library="boost_system" />
 			<Add directory="../SFML-2.3.2/lib" />
 			<Add directory="../glew-1.13.0/lib" />
 			<Add directory="../SFGUI/lib" />
+			<Add directory="../boost/stage/lib" />
 		</Linker>
-		<Unit filename="Experimental.h" />
-		<Unit filename="FFT.cpp" />
-		<Unit filename="FFT.h" />
-		<Unit filename="IHM.cpp" />
-		<Unit filename="IHM.h" />
-		<Unit filename="SoundStream.cpp" />
-		<Unit filename="SoundStream.h" />
-		<Unit filename="audioManager.cpp" />
-		<Unit filename="audioManager.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="header/AudioManager.h" />
+		<Unit filename="header/Experimental.h" />
+		<Unit filename="header/FFT.h" />
+		<Unit filename="header/File.h" />
+		<Unit filename="header/FileMaker.h" />
+		<Unit filename="header/FileManager.h" />
+		<Unit filename="header/IHM.h" />
+		<Unit filename="header/SoundStream.h" />
+		<Unit filename="header/SoundWave.h" />
+		<Unit filename="src/AudioManager.cpp" />
+		<Unit filename="src/FFT.cpp" />
+		<Unit filename="src/File.cpp" />
+		<Unit filename="src/FileMaker.cpp" />
+		<Unit filename="src/FileManager.cpp" />
+		<Unit filename="src/IHM.cpp" />
+		<Unit filename="src/SoundStream.cpp" />
+		<Unit filename="src/SoundWave.cpp" />
+		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
