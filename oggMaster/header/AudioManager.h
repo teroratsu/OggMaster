@@ -29,8 +29,8 @@ class AudioManager
            * @param s : path to the desired audio file.
            * @return true if the file as been loaded correctly into the buffer
         */
-        bool loadMusic(sf::String s); //!< load the file (_filename) into the soundBuffer
-        void loadMusicFromFolder(std::string); //!< load the files in the FileManager according to the folder path
+        void loadMusic(std::string); //!< load the file (_filename) into the soundBuffer
+        void loadMusicFromFolder(std::string, bool = true); //!< load the files in the FileManager according to the folder path
         void play(); //!< play the buffer by calling the SoundStream::play() method
         void pause(); //!< pause reading buffer by calling the SoundStream::pause() method
         void stop(); //!< stop reading buffer by calling the SoundStream::stop() method
@@ -54,6 +54,7 @@ class AudioManager
         float getAvgPower();
 
         std::string getCurPlayingSong() const;
+        void getAllFiles(std::vector<File>&);
 
         /**
            * Update what need to be updated

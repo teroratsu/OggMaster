@@ -38,12 +38,12 @@ void FileManager::findAllFiles(const std::string& pathToDirectory, bool iterateS
     }
 }
 
-File* FileManager::getFile(std::string file)
+File* FileManager::getFile(std::string file)//find using filename
 {
     it = _files.begin() + _curFileIndex;
     it->initBuffer();
     it = std::find_if(_files.begin(), _files.end(),
-             [file](const File & m) -> bool { return m.getFilepath() == file; });
+             [file](const File & m) -> bool { return m.getFilename() == file; });
     if(it == _files.end())//check if the file exist (if the file has been found)
     {
         throw std::string("Error : " + file + " doesn't exist");
@@ -62,8 +62,10 @@ void FileManager::preLoad()
     it->load();
 }
 
-File* FileManager::cur() const
+File* FileManager::cur()
 {
+    it = _files.begin() + _curFileIndex;
+    curFile = &(*it);
     return curFile;
 }
 
@@ -111,12 +113,19 @@ void FileManager::deleteFile(std::string file)
         std::cout << "Error : " << file << " doesn't exist" << std::endl;
 }
 
+void FileManager::fillVector(std::vector<File>& in_)
+{
+    in_ = _files;
+}
+
 void FileManager::addToVector(boost::filesystem::directory_entry entry)
 {
     //verification over the entry to make sure it's not already in the map
-    std::string file = entry.path().string();
+    std::string file = entry.path().filename().string();
+    file = file.substr(0,file.find_last_of('.'));
+    //check if the file isn't already registered in the vector
     it = std::find_if(_files.begin(), _files.end(),
-             [file](const File & m) -> bool { return m.getFilepath() == file; });
+             [file](const File & m) -> bool { return m.getFilename() == file; });
     if(it == _files.end())
     {
         bool is_valid(false);

@@ -40,7 +40,7 @@ File::File(const File& file){
 File::~File()
 {
     //dtor
-    delete _buffer;
+    //delete _buffer;
 }
 
 void File::load()

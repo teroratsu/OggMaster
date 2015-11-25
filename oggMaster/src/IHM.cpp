@@ -1,16 +1,21 @@
 #include "../header/IHM.h"
 
-#include <SFGUI/SFGUI.hpp>
-#include <SFGUI/Widgets.hpp>
-#include <SFGUI/Window.hpp>
-
 IHM::IHM() //: _LinesL_b(sf::PrimitiveType::Lines, 256), _LinesR_b(sf::PrimitiveType::Lines, 256),_LinesL_h(sf::PrimitiveType::Lines, 256),_LinesR_h(sf::PrimitiveType::Lines, 256)
 {
     initComponent();
+    manager.loadMusicFromFolder("./playMe");
+    manager.getAllFiles(_files);
+
+    _listfilesHolder->Remove( _listFiles );
+    _listFiles = sfg::Box::Create( sfg::Box::Orientation::VERTICAL,5.f );
+    for(std::vector<File>::iterator it = _files.begin() ; it != _files.end(); ++it)
+        packFile(*it);
+    _listfilesHolder->AddWithViewport( _listFiles );
 }
 
 IHM::~IHM()
 {
+    delete _soundwave;
     delete render_window;
 }
 
@@ -21,14 +26,6 @@ void IHM::PlayMusic(sf::String filename)
     m_label->SetText( fileName + " won't load. \n" ); // error
     manager.play();
     m_label->SetText("playing !");*/
-}
-
-void IHM::OnLoadBtnClick()
-{
-    manager.stop();
-    if(!manager.loadMusic(fileName))
-        m_label->SetText( "Music don't load :( (ogg file ?)\n" ); // error
-    m_label->SetText( "FILENAME GETTER NOT HANDLE YET !" );
 }
 
 void IHM::OnPlayBtnClick()
@@ -56,6 +53,26 @@ void IHM::OnPrevBtnClick()
     manager.prev();
 }
 
+void IHM::OnLoadBtnClick()
+{
+    manager.loadMusicFromFolder(_entryLoader->GetText(), _iterateSubFolders->IsActive());//load
+    manager.getAllFiles(_files);
+
+    _listfilesHolder->Remove( _listFiles );
+    _listFiles = sfg::Box::Create( sfg::Box::Orientation::VERTICAL,5.f);
+    auto box = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL, 300.f);
+    _listFiles->Pack( box, false);
+    for(std::vector<File>::iterator it = _files.begin() ; it != _files.end(); ++it)
+        packFile(*it);
+    _listfilesHolder->AddWithViewport( _listFiles );
+}
+
+void IHM::OnLoadMusicBtnClick(std::string f_)
+{
+    manager.loadMusic(f_); //filename
+    manager.play();
+}
+
 void IHM::OnSeek()
 {
     sf::FloatRect r_ = _songDuration->GetAllocation();
@@ -78,8 +95,6 @@ void IHM::Run()
     // Main loop!
     sf::Event event;
     sf::Clock clock;
-
-    manager.loadMusicFromFolder("./playMe");
 
     while( render_window->isOpen() )
     {
@@ -172,89 +187,137 @@ void IHM::update(){
     updateCanvas();
 }
 
+void IHM::packFile(File f_)
+{
+    auto box = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL, 50.f);
+    box->Pack( sfg::Label::Create( f_.getFilename() ), true, true );
+    box->Pack( sfg::Label::Create( f_.getFilepath() ), true, true );
+    auto button = sfg::Button::Create( L"Load" );
+    //auto funct = std::bind( &IHM::OnLoadMusicBtnClick, f_.getFilename());
+    auto funct = std::bind(&IHM::OnLoadMusicBtnClick,this, f_.getFilename());//need to try this
+    button->GetSignal( sfg::Widget::OnLeftClick ).Connect( funct );
+    box->Pack( button, false );
+    _listFiles->Pack( box, false);
+}
+
     void IHM::initComponent()
     {
         render_window = new sf::RenderWindow( sf::VideoMode( SCREEN_WIDTH, SCREEN_HEIGHT ), "OGG MASTER" , sf::Style::Titlebar | sf::Style::Close);
         render_window->resetGLStates();//not sfml that draw
 
         _mainWindow = sfg::Window::Create( sfg::Window::Style::BACKGROUND);
-        // Create the label.
-        m_label = sfg::Label::Create( "Please, load a music file!");
 
-        // Create Buttons
-        /*_loadBtn = sfg::Button::Create( "LOAD" );
-        _loadBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnLoadBtnClick, this ) );*/
-        _playBtn = sfg::Button::Create( "PLAY" );
-        _playBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPlayBtnClick, this ) );
-        _pauseBtn = sfg::Button::Create( "PAUSE" );
-        _pauseBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPauseBtnClick, this ) );
-        _stopBtn = sfg::Button::Create( "STOP" );
-        _stopBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnStopBtnClick, this ) );
-        _nextBtn = sfg::Button::Create( "->" );
-        _nextBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnNextBtnClick, this ) );
-        _prevBtn = sfg::Button::Create( "<-" );
-        _prevBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPrevBtnClick, this ) );
+        _filesPacked = 5;
 
-        //Create the canvas
-        _canvas = sfg::Canvas::Create();
+        //!< Player >
+            /*_loadBtn = sfg::Button::Create( "LOAD" );
+            _loadBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnLoadBtnClick, this ) );*/
+            _playBtn = sfg::Button::Create("PLAY");
+            _playBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPlayBtnClick, this ) );
+            _pauseBtn = sfg::Button::Create( "PAUSE" );
+            _pauseBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPauseBtnClick, this ) );
+            _stopBtn = sfg::Button::Create( "STOP" );
+            _stopBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnStopBtnClick, this ) );
+            _nextBtn = sfg::Button::Create( "->" );
+            _nextBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnNextBtnClick, this ) );
+            _prevBtn = sfg::Button::Create( "<-" );
+            _prevBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnPrevBtnClick, this ) );
 
-        //_logoOgg_tex.loadFromFile("./bin/Debug/oggPro.png");
-        _logoOgg_tex.loadFromFile("./Assets/BG.jpg");
-        _nameHolder_tex.loadFromFile("./Assets/SoundNameHandler.png");
+            //Create the canvas
+            _canvas = sfg::Canvas::Create();
 
-        _logoOgg.setTexture(_logoOgg_tex);
-        _nameHolder.setTexture(_nameHolder_tex);
+            //_logoOgg_tex.loadFromFile("./bin/Debug/oggPro.png");
+            _logoOgg_tex.loadFromFile("./Assets/BG.jpg");
+            _nameHolder_tex.loadFromFile("./Assets/SoundNameHandler.png");
 
-        sf::FloatRect _localBounds = _logoOgg.getLocalBounds();
-        _logoOgg.setOrigin(_localBounds.width/2,_localBounds.height/2);
-        _logoOgg.setPosition(400,300);
+            _logoOgg.setTexture(_logoOgg_tex);
+            _nameHolder.setTexture(_nameHolder_tex);
 
-        _font.loadFromFile("./Assets/font.ttf");
-        _curSong.setFont(_font);
-        _curSong.setString("Click the play button ! (default song)");
-        _curSong.setCharacterSize(20);
-        _curDuration.setFont(_font);
-        _curDuration.setCharacterSize(15);
-        _localBounds = _curSong.getLocalBounds();
-        _curSong.setOrigin(_localBounds.width/2,_localBounds.height/2);
+            sf::FloatRect _localBounds = _logoOgg.getLocalBounds();
+            _logoOgg.setOrigin(_localBounds.width/2,_localBounds.height/2);
+            _logoOgg.setPosition(400,300);
 
-        _curSong.setPosition(400,300);
+            _font.loadFromFile("./Assets/font.ttf");
+            _curSong.setFont(_font);
+            _curSong.setString("Click the play button ! (default song)");
+            _curSong.setCharacterSize(20);
+            _curDuration.setFont(_font);
+            _curDuration.setCharacterSize(15);
+            _localBounds = _curSong.getLocalBounds();
+            _curSong.setOrigin(_localBounds.width/2,_localBounds.height/2);
 
-        _canvas->SetRequisition( sf::Vector2f( sf::Vector2f(800.0f,600.0f ) ) );
-        _soundwave = new LineDisplayer(_canvas,15,1024);
+            _curSong.setPosition(400,300);
 
-        _volume = sfg::ProgressBar::Create(sfg::ProgressBar::Orientation::VERTICAL);
-        _volume->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnVolumeChange, this ) );
-        _volume->SetFraction(manager.getVolume());
+            _canvas->SetRequisition( sf::Vector2f( sf::Vector2f(800.0f,600.0f ) ) );
+            _soundwave = new LineDisplayer(_canvas,15,1024);
 
-        _songDuration = sfg::ProgressBar::Create(sfg::ProgressBar::Orientation::HORIZONTAL);
-        _songDuration->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnSeek, this ) );
+            _volume = sfg::ProgressBar::Create(sfg::ProgressBar::Orientation::VERTICAL);
+            _volume->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnVolumeChange, this ) );
+            _volume->SetFraction(manager.getVolume());
 
-        _boxAffPlayer = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL,10.f);
-        _boxAffPlayer->Pack( _canvas, true, true);
-        _boxAffPlayer->Pack( _volume, true, true);
+            _songDuration = sfg::ProgressBar::Create(sfg::ProgressBar::Orientation::HORIZONTAL);
+            _songDuration->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnSeek, this ) );
 
-        _boxToolbar = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL,10.f);
-        _boxToolbar->Pack( _prevBtn, true, true);
-        _boxToolbar->Pack( _playBtn, true, true );
-        _boxToolbar->Pack( _pauseBtn, true, true );
-        _boxToolbar->Pack( _stopBtn, true, true );
-        //_boxToolbar->Pack( _loadBtn, true, true );
-        _boxToolbar->Pack( _nextBtn, true, true);
+            _boxAffPlayer = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL,10.f);
+            _boxAffPlayer->Pack( _canvas, true, true);
+            _boxAffPlayer->Pack( _volume, true, true);
 
-        _BoxFrameToolbar = sfg::Frame::Create(L"Toolbar");
-        _BoxFrameToolbar->Add(_boxToolbar);
+            _boxToolbar = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL,10.f);
+            _boxToolbar->Pack( _prevBtn, true, true);
+            _boxToolbar->Pack( _playBtn, true, true );
+            _boxToolbar->Pack( _pauseBtn, true, true );
+            _boxToolbar->Pack( _stopBtn, true, true );
+            //_boxToolbar->Pack( _loadBtn, true, true );
+            _boxToolbar->Pack( _nextBtn, true, true);
 
-        _tabPlayerBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
-        _tabPlayerBox->SetSpacing(5.f);
-        _tabPlayerBox->Pack(_boxAffPlayer);
-        _tabPlayerBox->Pack(_boxToolbar);
-        _tabPlayerBox->Pack(_songDuration);
+            _BoxFrameToolbar = sfg::Frame::Create(L"Toolbar");
+            _BoxFrameToolbar->Add(_boxToolbar);
 
-        _tabPanel = sfg::Notebook::Create();
-        _tabPanel->SetTabPosition( sfg::Notebook::TabPosition::TOP );
-        _tabPanel->AppendPage( _tabPlayerBox, sfg::Label::Create( "Player" ) );
-        _tabPanel->AppendPage( sfg::Label::Create(L"Test"), sfg::Label::Create( "Testons" ) );
+            _tabPlayerBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+            _tabPlayerBox->SetSpacing(5.f);
+            _tabPlayerBox->Pack(_boxAffPlayer);
+            _tabPlayerBox->Pack(_boxToolbar);
+            _tabPlayerBox->Pack(_songDuration);
+        //!< End Player >
+
+        //!< Loader >
+            _loadBtn = sfg::Button::Create("Load Folder");
+            _loadBtn->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &IHM::OnLoadBtnClick, this ) );
+            _entryLoader = sfg::Entry::Create("./musique");
+            _iterateSubFolders = sfg::CheckButton::Create( "iterate sub folders" );
+
+            _boxEntry = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL,20.f);
+            _boxEntry->Pack( _loadBtn, true, true);
+            _boxEntry->Pack( _entryLoader, true, true);
+            _boxEntry->Pack( _iterateSubFolders, true, true);
+
+            _BoxFrameEntry = sfg::Frame::Create(L"Load files from folder");
+            _BoxFrameEntry->Add(_boxEntry);
+
+            _listFiles = sfg::Box::Create( sfg::Box::Orientation::VERTICAL );
+            auto box = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL, 300.f);
+            box->Pack( sfg::Label::Create( L"FileName"), true );
+            box->Pack( sfg::Label::Create( L"Path" ), true, true );
+            box->Pack( sfg::Label::Create( L"Load" ), true );
+            _listFiles->Pack( box, false);
+
+            _listfilesHolder = sfg::ScrolledWindow::Create();
+            _listfilesHolder->SetRequisition( sf::Vector2f( .0f, 550.f ) );
+            _listfilesHolder->SetScrollbarPolicy( sfg::ScrolledWindow::HORIZONTAL_AUTOMATIC | sfg::ScrolledWindow::VERTICAL_AUTOMATIC );
+            _listfilesHolder->SetPlacement( sfg::ScrolledWindow::Placement::TOP_LEFT );
+            _listfilesHolder->AddWithViewport( _listFiles );
+
+            _tabLoaderBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+            _tabLoaderBox->SetSpacing(5.f);
+            _tabLoaderBox->Pack(_BoxFrameEntry);
+            _tabLoaderBox->Pack(_listfilesHolder);
+        //!< End Loader >
+
+        //!< building TabPanel >
+            _tabPanel = sfg::Notebook::Create();
+            _tabPanel->SetTabPosition( sfg::Notebook::TabPosition::TOP );
+            _tabPanel->AppendPage( _tabPlayerBox, sfg::Label::Create( "Player" ) );
+            _tabPanel->AppendPage( _tabLoaderBox, sfg::Label::Create( "Loader" ) );
 
         _mainWindow->Add(_tabPanel);
         //_mainWindow->SetPosition(sf::Vector2f( 0.f, -20.f ));

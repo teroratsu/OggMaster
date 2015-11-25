@@ -25,13 +25,14 @@ public:
     *   @param std::string : file required by user
     **/
     File* getFile(std::string file);
-    File* cur() const;
+    File* cur();
     File* next();
     File* prev();
 
     void preLoad();
 
     void deleteFile(std::string file);
+    void fillVector(std::vector<File>& in_);
 
 private:
     void addToVector(boost::filesystem::directory_entry);

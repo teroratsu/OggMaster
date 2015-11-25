@@ -23,8 +23,18 @@ class IHM
 public:
     IHM();
     ~IHM();
+
+    void Run();
+
+private:
+    void initComponent();
+    void update();
+    void updateCanvas();
+
     // Our button click handler.
     void OnLoadBtnClick();
+    void OnLoadMusicBtnClick(std::string);
+
     void OnPlayBtnClick();
     void OnPauseBtnClick();
     void OnStopBtnClick();
@@ -36,17 +46,11 @@ public:
 
     void PlayMusic(sf::String);
 
-    void Run();
-
-private:
-    void initComponent();
-    void update();
-    void updateCanvas();
-
     //void drawSoundWave(float*);
 
     AudioManager manager;
-    sf::String fileName;
+    std::vector<File> _files;
+    unsigned int _filesPacked;
 
     sf::RenderWindow* render_window;
     sfg::SFGUI m_sfgui; // Create an SFGUI object. This is required before doing anything with SFGUI.
@@ -60,16 +64,16 @@ private:
     //!< TabPanel
     sfg::Notebook::Ptr _tabPanel;
 
-    //! < TAB PLAYER >
-        //!< Components of each page are stored in a box
-        sfg::Box::Ptr _tabPlayerBox;
-        sfg::Box::Ptr _tabLoaderBox;
-        sfg::Box::Ptr _tabSettingsBox;
-        sfg::Box::Ptr _tabRecorderBox;
-        sfg::Box::Ptr _tabConverterBox;
+    //!< Components of each page are stored in a box
+    sfg::Box::Ptr _tabPlayerBox;//implemented
+    sfg::Box::Ptr _tabLoaderBox;//implemented
+    sfg::Box::Ptr _tabSettingsBox;//not yey
+    sfg::Box::Ptr _tabRecorderBox;//not yet
+    sfg::Box::Ptr _tabConverterBox;//not yet
 
+
+    //! < TAB PLAYER >
         //!< Create the Buttons (smart pointers)
-        sfg::Button::Ptr _loadBtn;
         sfg::Button::Ptr _playBtn;
         sfg::Button::Ptr _pauseBtn;
         sfg::Button::Ptr _stopBtn;
@@ -89,11 +93,17 @@ private:
         //!< Create the progress bar
         sfg::ProgressBar::Ptr _songDuration;
 
-        sfg::Label::Ptr m_label; //actually useless
-
     //! < TAB LOADER >
+        //!< Create the Entry
+        sfg::Button::Ptr _loadBtn;
+        sfg::Entry::Ptr _entryLoader;
+        sfg::CheckButton::Ptr _iterateSubFolders;
+        sfg::Box::Ptr _listFiles;
+        void packFile(File);
 
-        //empty
+        sfg::Box::Ptr _boxEntry;
+        sfg::ScrolledWindow::Ptr _listfilesHolder;
+        sfg::Frame::Ptr _BoxFrameEntry;
 
     //!< init data :
     sf::Sprite _logoOgg;
@@ -104,6 +114,12 @@ private:
     sf::Font _font;
     sf::Text _curSong;
     sf::Text _curDuration;
+
+    sf::Image _playImg;
+    sf::Image _pauseImg;
+    sf::Image _stopImg;
+    sf::Image _nextImg;
+    sf::Image _prevImg;
 
     //!< update data :
     sf::Clock clock_Manager;

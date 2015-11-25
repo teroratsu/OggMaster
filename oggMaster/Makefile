@@ -4,7 +4,7 @@ EXEC=oggMaster
 # Compiler
 IDIR=header ../SFML-2.3.2/include ../glew-1.13.0/include ../SFGUI/include ../boost/
 IDIRFLAG=$(foreach idir, $(IDIR), -I$(idir))
-CXXFLAGS=-std=c++0x -std=c++11 -Ofast -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter $(IDIRFLAG)
+CXXFLAGS=-std=c++0x -std=c++11 $(IDIRFLAG)
 # Linker
 LFLAGS=$(IDIRFLAG) -L../SFML-2.3.2/lib -L../glew-1.13.0/lib -L../SFGUI/lib -L../boost/stage/lib
 LIBS=-lsfgui -lboost_system -lboost_filesystem -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system

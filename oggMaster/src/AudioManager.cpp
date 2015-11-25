@@ -21,15 +21,6 @@ AudioManager::~AudioManager()
     _stream->stop(); //!< The audio buffer must be stopped before destroying the actual AudioManager object /!
 }
 
-bool AudioManager::loadMusic(sf::String filename)
-{
-    bool initBuffer = true;
-    initBuffer = _buffer->loadFromFile(filename);
-    init();
-
-    return initBuffer;
-}
-
 void AudioManager::init()
 {
     _stream->load(*_buffer);
@@ -92,9 +83,30 @@ void AudioManager::update()
     //!< TODO implement pre-load function
 }
 
-void AudioManager::loadMusicFromFolder(std::string s)
+void AudioManager::loadMusic(std::string f_)
 {
-    _fManager->findAllFiles(s,true);
+    _allowUpdateObs = false;
+    stop();//stop the actual buffer
+    try{_curFile = _fManager->getFile(f_);}
+    catch(const std::string& e_){
+        std::cout << e_ << std::endl;
+    }
+    loadBuffer();
+}
+
+void AudioManager::loadMusicFromFolder(std::string s, bool i)
+{
+    _fManager->findAllFiles(s,i);
+    stop();
+    _curFile = _fManager->getFile(_fManager->cur()->getFilename());
+    loadBuffer();
+}
+
+void AudioManager::getAllFiles(std::vector<File>& in_)
+{
+    pause();
+    _fManager->fillVector(in_);
+    play();
 }
 
 void AudioManager::next()
@@ -175,6 +187,6 @@ float AudioManager::getAvgPower()
 
 std::string AudioManager::getCurPlayingSong() const
 {
-    return _curFile->getFilename();
+    return _fManager->cur()->getFilename();
 }
 
