@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['audiomanager',['audioManager',['../classaudioManager.html',1,'']]]
+  ['audiomanager',['AudioManager',['../classAudioManager.html',1,'']]]
 ];

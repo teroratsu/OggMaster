@@ -14,28 +14,49 @@
 
 class SoundWave : public Observer
 {
-    public:
-        SoundWave();
-        //SoundWave(std::shared_ptr<SoundStream> buffer); //!< must be the default ctor
-        virtual ~SoundWave();//!< dtor
+public:
+    //! default ctor
+    /*!
+      \sa SoundWave()
+    */
+    SoundWave();//!< default ctor
+    virtual ~SoundWave();//!< dtor
+    //! return the BufferSize
+    /*!
+      \sa BUFFER_SIZE
+      \return buffer size
+    */
+    int getBufferSize();
+    //! init the soundwave data
+    void init();
 
-        int getBufferSize();
-        void init();
-        float* getMagnitude();
-        float* getPhase();
-        float* getPower();
-        float getAvgPower();
-    private:
-    void update(sf::SoundStream::Chunk&, unsigned int, unsigned int, std::size_t); //!< update chunk
-    void update(sf::Time); //!< force the refresh of the data
-    /**
-           * Initialize the freq array.
-           * @see SoundWave()
+    float* getMagnitude();//!< return the magnitude array
+    float* getPhase();//!< return the phase array
+    float* getPower();//!< return the power array
+    float getAvgPower();//!< return the avgPower
+private:
+    //! update with a new chunk of data
+    /*!
+      \param c chunk of data
+      \param s_r Sample rate
+      \param c_c Channel count
+      \param s first sample of the chunk
+      \sa update()
+    */
+    void update(sf::SoundStream::Chunk& c, unsigned int s_r, unsigned int c_c, std::size_t s); //!< update chunk
+    //! update Soundwave with a given time offset
+    /*!
+      \param t time offset
+      \sa update()
+    */
+    void update(sf::Time t); //!< force the refresh of the data
+    //! clear the data in order to handle the update
+    /*!
+      \sa update()
     */
     void clearData();
     void conversionChunk(sf::SoundStream::Chunk&);
 
-    //std::shared_ptr<SoundStream> _stream; //!< audio stream to work with
     const int NB_CHUNKF_STORED_MAX; //! < Max number of chunkf needed (to compensate the offset)
 
     FFT _fft;
@@ -53,9 +74,6 @@ class SoundWave : public Observer
     float power[BUFFER_SIZE/2]; //!< contain the power data from buffer once _fft.powerSpectrum() method is called
 
     float avg_power;
-
-    //float freq[NUM_WINDOWS][BUFFER_SIZE/2];
-    //float freq_phase[NUM_WINDOWS][BUFFER_SIZE/2];
 };
 
 #endif // SOUNDWAVE_H

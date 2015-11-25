@@ -19,23 +19,43 @@ public:
     *   @param std::string : folder to iterate
     *   @param bool : true if you want to iterate the sub folders (false by default)
     **/
+    //! load files from given folder into the vector
+    /*!
+      \param pathToDirectory path to the directory where to search for files
+      \param iterateSubFolders true if you want to iterate the sub folders
+      \sa _files
+    */
     void findAllFiles(const std::string& pathToDirectory, bool iterateSubFolders=false);
-    /**
-    *   @return File* : a pointer to the required file
-    *   @param std::string : file required by user
-    **/
+    //! return the desired file according to the input string
+    /*!
+      \param file file to get (based on the filename)
+      \return the desired file according to the input
+    */
     File* getFile(std::string file);
-    File* cur();
-    File* next();
-    File* prev();
+    File* cur();//!< return the current file
+    File* next();//!< return the next file in the list
+    File* prev();//!< return the previous file in the list
 
-    void preLoad();
+    void preLoad();//!< load the nextFile's buffer
 
-    void deleteFile(std::string file);
-    void fillVector(std::vector<File>& in_);
+    //! delete file
+    /*!
+      \param file file to delete (based on the filename)
+    */
+    void deleteFile(std::string file); //!< delete the given file
+    //! fill the in_ vector with file list
+    /*!
+      \param in_ vector of File to fill
+    */
+    void fillVector(std::vector<File>& in_);//in_ = _files 
 
 private:
-    void addToVector(boost::filesystem::directory_entry);
+    //! register a file to the file list
+    /*!
+      \param file file to add (directory_entry)
+      \return the desired file according to the input
+    */
+    void addToVector(boost::filesystem::directory_entry file);
 
     FileMaker _fileMaker;
     std::vector<File> _files;

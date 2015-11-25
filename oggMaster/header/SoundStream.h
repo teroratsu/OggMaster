@@ -9,47 +9,71 @@
 
 class SoundStream : public sf::SoundStream
 {
-    public:
-        SoundStream();
-        SoundStream(Observer*);//default ctor
-        virtual ~SoundStream();
-        void load(const sf::SoundBuffer&); //! load
-        void seek(sf::Time); //!< seek to the desired time according to the audio file duration
+public:
+    SoundStream();//default ctor
+    SoundStream(Observer*);//!< ctor to initialize vite a given module (SoundWave)
+    virtual ~SoundStream();
 
-        sf::Time getPOffset();
+    //! load a given buffer to the _stream
+    /*!
+      \param b buffer to load
+      \sa sf::SoundStream sf::SoundBuffer
+    */
+    void load(const sf::SoundBuffer& b); //! load
+    //! seek bufferto the desired time
+    /*!
+      \param t time offset
+      \sa sf::Time
+    */
+    void seek(sf::Time t); //!< seek to the desired time according to the audio file duration
 
-        void updateObs(); //!< notify Observer with time elasped
-        bool isBufferEnd();
+    //! return the playing offset
+    /*!
+      \return the playing offset
+    */
+    sf::Time getPOffset();
 
-        void Attach(Observer*);
-        void Detach(Observer*);
+    void updateObs(); //!< notify Observer with time elasped
+    bool isBufferEnd();//!< return true if the current buffer is fully played
 
-    private:
+    //! sub an Observer to the audio flux
+    /*!
+      \param o pointer to an Observer
+    */
+    void Attach(Observer* o);
 
-        /**
-           * notify observers with the chunk actually played and additional data
-           * @param sf::SoundStream::Chunk& : Chunk of data to be sent.
-           * @param unsigned int : Sample rate. sample/s
-           * @param unsigned int : Channel count.
-           * @param unsigned std::size_t : 'pointer' to the first sample.
-           * @see Notify(sf::Time), SoundStream(Observer*),
-        */
-        void Notify(sf::SoundStream::Chunk&, unsigned int, unsigned int, std::size_t);
-                /**
-           * notify observers with the currently played sample
-           * @param sf::Time : position of the current sample relative to the beginning of the audio flux.
-           * @see SoundStream(Observer*), sf::SoundStream::Chunk&::m_samples
-        */
-        void Notify(sf::Time);
+    //! unsub an Observer to the audio flux
+    /*!
+      \param o pointer to an Observer
+    */
+    void Detach(Observer* o);
 
-        std::vector<Observer*> _listObserver;
+private:
 
-        std::vector<sf::Int16> m_samples; //! samples from the buffer
-        std::size_t m_currentSample; //! current sample (the "to be played" one)
-        bool bufferEnd;
+    //! Notify observers with a new chunk of data
+      /*!
+      \param c chunk of data
+      \param s_r Sample rate
+      \param c_c Channel count
+      \param s first sample of the chunk
+      \sa Notify()
+    */
+    void Notify(sf::SoundStream::Chunk& c, unsigned int s_r, unsigned int c_c, std::size_t s);
+    //! Notify Observers with a given time offset
+    /*!
+      \param t time offset
+      \sa Notify()
+    */
+    void Notify(sf::Time t);
 
-        virtual bool onGetData(Chunk&);
-        virtual void onSeek(sf::Time);
+    std::vector<Observer*> _listObserver;
+
+    std::vector<sf::Int16> m_samples; //! samples from the buffer
+    std::size_t m_currentSample; //! current sample (the "to be played" one)
+    bool bufferEnd;
+
+    virtual bool onGetData(Chunk&);
+    virtual void onSeek(sf::Time);
 };
 
 #endif // SOUNDSTREAM_H

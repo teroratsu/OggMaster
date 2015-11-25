@@ -1,5 +1,21 @@
 var searchData=
 [
-  ['load',['load',['../classSoundStream.html#a65c3f112bdc3373c231ddcd0767fd031',1,'SoundStream']]],
-  ['loadmusic',['loadMusic',['../classaudioManager.html#ada6c910430c0c1e7467ad8c6641010f7',1,'audioManager']]]
+  ['getallfiles',['getAllFiles',['../classAudioManager.html#aad81f933eb8aed87c2352b32fcbe9782',1,'AudioManager']]],
+  ['getavgpower',['getAvgPower',['../classAudioManager.html#ac7e561ba8fd78bfae235bfc18bf83ce1',1,'AudioManager::getAvgPower()'],['../classSoundWave.html#ae9ee9576dc02cc46bd73c38b59d58cb2',1,'SoundWave::getAvgPower()']]],
+  ['getbuffer',['getBuffer',['../classFile.html#a949e0c451659a270b8f1a8ea9cb7d160',1,'File']]],
+  ['getbuffersize',['getBufferSize',['../classSoundWave.html#a44a2aaac4bb3690a0f60dac48d37adc3',1,'SoundWave']]],
+  ['getcurplayingsong',['getCurPlayingSong',['../classAudioManager.html#a8a339e04973fab7321e1ef38ee10e996',1,'AudioManager']]],
+  ['getduration',['getDuration',['../classAudioManager.html#abedd7ab672ed15b3480cfacb1b7339b9',1,'AudioManager']]],
+  ['getdurationp',['getDurationP',['../classAudioManager.html#a331f7e948fa9a1e1d1a49f1fb48112c4',1,'AudioManager']]],
+  ['getfile',['getFile',['../classPrototype.html#aaa7e003edce90df2cf0376fbe5117c5c',1,'Prototype::getFile()'],['../classFileMaker.html#a2da583a236a65daf3c11e6d2f1d2359c',1,'FileMaker::getFile()'],['../classFileManager.html#a68eefdb3cac178dcdc362fa0540935f1',1,'FileManager::getFile()']]],
+  ['getfilename',['getFilename',['../classFile.html#a3a50279188dd9234358cfef31fc8d56a',1,'File']]],
+  ['getfilepath',['getFilepath',['../classFile.html#a29474554380276789f139f3b15b0fb4a',1,'File']]],
+  ['getfiletype',['getFiletype',['../classFile.html#af383016d3e5cd1eb78d8c33dfa0e3503',1,'File']]],
+  ['getmagnitude',['getMagnitude',['../classSoundWave.html#a0ef0523616554bbf5ca3a7c5bcccf347',1,'SoundWave']]],
+  ['getphase',['getPhase',['../classAudioManager.html#aed9c2968548b1c3f388616423fc45ad8',1,'AudioManager::getPhase()'],['../classSoundWave.html#a53e58f2e72dba0a8c6166faa9831559a',1,'SoundWave::getPhase()']]],
+  ['getpoffset',['getPOffset',['../classSoundStream.html#ad3db0e2917077836eda35aec5ce152bc',1,'SoundStream']]],
+  ['getpower',['getPower',['../classAudioManager.html#a32bbbfd86fba23792377d08b0ef80c19',1,'AudioManager::getPower()'],['../classSoundWave.html#af7a8ad9411b800f5c40171d0cb7f5655',1,'SoundWave::getPower()']]],
+  ['getsoundwave',['getSoundwave',['../classAudioManager.html#a97d86d8a7a19aaf875b1e1e7febe8eff',1,'AudioManager']]],
+  ['getstatus',['getStatus',['../classAudioManager.html#a9ce4d8082a194bf780038a0aee942468',1,'AudioManager']]],
+  ['getvolume',['getVolume',['../classAudioManager.html#a4d8a968f1a5741d4c9faa79bbcb95c79',1,'AudioManager']]]
 ];

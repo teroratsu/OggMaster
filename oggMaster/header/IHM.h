@@ -21,30 +21,45 @@ const int SCREEN_HEIGHT = 705;
 class IHM
 {
 public:
-    IHM();
-    ~IHM();
-
+    IHM();//!< ctor
+    ~IHM();//!< dtor
+    //! starting point of the GUI
     void Run();
 
 private:
+    //! Init the whole GUI components
+    /*!
+        \sa IHM()
+    */
     void initComponent();
+    //! update GUI by getting data from the audio manager
+    /*!
+      \sa initComponent()
+    */
     void update();
+    //! specific update of the audio Visualization canvas
+    /*!
+        \sa update()
+    */
     void updateCanvas();
 
-    // Our button click handler.
-    void OnLoadBtnClick();
-    void OnLoadMusicBtnClick(std::string);
+    void OnLoadBtnClick();//!< refresh file list in the loader tab after loading new files
+    void OnLoadMusicBtnClick(std::string);//!< call the playMusic function with fucntion param as argument
 
-    void OnPlayBtnClick();
-    void OnPauseBtnClick();
-    void OnStopBtnClick();
-    void OnNextBtnClick();
-    void OnPrevBtnClick();
+    void OnPlayBtnClick();//!< ask audio manager to play the actual buffer
+    void OnPauseBtnClick();//!< ask audio manager to pause the actual buffer
+    void OnStopBtnClick();//!< ask audio manager to stop the actual buffer
+    void OnNextBtnClick();//!< ask audio manager to select and play the next song in the list
+    void OnPrevBtnClick();//!< ask audio manager to select and play the previous song in list
     //!< simple division to be able to seek buffer to the good time according to the mouse click
-    void OnSeek();
-    void OnVolumeChange();
+    void OnSeek();//!< seek at the desired time according to the cursor position on event
+    void OnVolumeChange();//!< change volume of the stream (by asking the manager) according to the cursor position on event
 
-    void PlayMusic(sf::String);
+    //! ask the audioManager to play the desired file
+    /*!
+      \param s desired file
+    */
+    void PlayMusic(sf::String s);
 
     //void drawSoundWave(float*);
 

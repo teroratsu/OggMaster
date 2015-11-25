@@ -1,0 +1,81 @@
+\hypertarget{classLineDisplayer}{}\section{Line\+Displayer Class Reference}
+\label{classLineDisplayer}\index{Line\+Displayer@{Line\+Displayer}}
+Inheritance diagram for Line\+Displayer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classLineDisplayer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLineDisplayer_ab05e05e5d92507e11f2892d3a36c55c9}{Line\+Displayer} (sfg\+::\+Canvas\+::\+Ptr c, const unsigned int \&v, const unsigned int \&s\+\_\+c)
+\begin{DoxyCompactList}\small\item\em default ctor \end{DoxyCompactList}\item 
+void \hyperlink{classLineDisplayer_a1ed7751782d968cf21adfee1946ae644}{draw} (float $\ast$, float, sf\+::\+Time, sf\+::\+Sound\+Source\+::\+Status)
+\begin{DoxyCompactList}\small\item\em draw function, must be called only if the canavs as been initialize \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Line\+Displayer@{Line\+Displayer}!Line\+Displayer@{Line\+Displayer}}
+\index{Line\+Displayer@{Line\+Displayer}!Line\+Displayer@{Line\+Displayer}}
+\subsubsection[{Line\+Displayer(sfg\+::\+Canvas\+::\+Ptr c, const unsigned int \&v, const unsigned int \&s\+\_\+c)}]{\setlength{\rightskip}{0pt plus 5cm}Line\+Displayer\+::\+Line\+Displayer (
+\begin{DoxyParamCaption}
+\item[{sfg\+::\+Canvas\+::\+Ptr}]{c, }
+\item[{const unsigned int \&}]{v, }
+\item[{const unsigned int \&}]{s\+\_\+c}
+\end{DoxyParamCaption}
+)}\hypertarget{classLineDisplayer_ab05e05e5d92507e11f2892d3a36c55c9}{}\label{classLineDisplayer_ab05e05e5d92507e11f2892d3a36c55c9}
+
+
+default ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & pointer to the canavs where to draw \\
+\hline
+{\em v} & default\+\_\+velocity of sparks \\
+\hline
+{\em s\+\_\+c} & sparks count, number of sparks to draw \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Line\+Displayer@{Line\+Displayer}!draw@{draw}}
+\index{draw@{draw}!Line\+Displayer@{Line\+Displayer}}
+\subsubsection[{draw(float $\ast$, float, sf\+::\+Time, sf\+::\+Sound\+Source\+::\+Status)}]{\setlength{\rightskip}{0pt plus 5cm}void Line\+Displayer\+::draw (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{d\+\_\+, }
+\item[{float}]{avg, }
+\item[{sf\+::\+Time}]{t\+\_\+e, }
+\item[{sf\+::\+Sound\+Source\+::\+Status}]{status}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classLineDisplayer_a1ed7751782d968cf21adfee1946ae644}{}\label{classLineDisplayer_a1ed7751782d968cf21adfee1946ae644}
+
+
+draw function, must be called only if the canavs as been initialize 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & data array, the one to work with \\
+\hline
+{\em avg} & average power, based on the data \\
+\hline
+{\em of} & playing offset \\
+\hline
+{\em s} & \+\_\+stream status \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+\_\+canvas and \hyperlink{classLineDisplayer_ab05e05e5d92507e11f2892d3a36c55c9}{Line\+Displayer()} 
+\end{DoxySeeAlso}
+
+
+Implements \hyperlink{classSoundWaveDisplayer_a7e1db6e2511378d98d6f225d0e817194}{Sound\+Wave\+Displayer}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+header/Line\+Displayer.\+h\item 
+src/Line\+Displayer.\+cpp\end{DoxyCompactItemize}

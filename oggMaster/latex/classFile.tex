@@ -1,0 +1,166 @@
+\hypertarget{classFile}{}\section{File Class Reference}
+\label{classFile}\index{File@{File}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFile_a2aba1ffeec43f6129e2e629d394e667c}{File} (boost\+::filesystem\+::directory\+\_\+entry path)
+\begin{DoxyCompactList}\small\item\em ctor taking a directory\+\_\+entry as a parameter \end{DoxyCompactList}\item 
+\hyperlink{classFile_a4901fbf2e6cebd0adea4ea0cf998530f}{File} (std\+::string path)
+\begin{DoxyCompactList}\small\item\em ctor taking a string as a parameter \end{DoxyCompactList}\item 
+\hyperlink{classFile_a410ee9f7dbfec66da258ce51a59f2218}{File} (const \hyperlink{classFile}{File} \&f)
+\begin{DoxyCompactList}\small\item\em copy ctor \end{DoxyCompactList}\item 
+\hyperlink{classFile_ac704ebdf5f57d7a1c5ddf409d797fb69}{$\sim$\+File} ()\hypertarget{classFile_ac704ebdf5f57d7a1c5ddf409d797fb69}{}\label{classFile_ac704ebdf5f57d7a1c5ddf409d797fb69}
+
+\begin{DoxyCompactList}\small\item\em default dtor \end{DoxyCompactList}\item 
+void \hyperlink{classFile_adba1bb8e873727a0fce531bbd5f79a05}{set\+Properties} (boost\+::filesystem\+::directory\+\_\+entry path)
+\begin{DoxyCompactList}\small\item\em change properties of the file (his path, filename of extension) \end{DoxyCompactList}\item 
+void \hyperlink{classFile_a768a2c7f79d26eed019aec81523a4eef}{load} ()
+\begin{DoxyCompactList}\small\item\em load the buffer \end{DoxyCompactList}\item 
+bool \hyperlink{classFile_ace611438e36854bf5c971bd5f12f8ae9}{is\+Loaded} () const 
+\begin{DoxyCompactList}\small\item\em return true if the buffer is already loaded \end{DoxyCompactList}\item 
+void \hyperlink{classFile_a0f78315c4a520d293695433242f64649}{init\+Buffer} ()
+\begin{DoxyCompactList}\small\item\em init the internal buffer \end{DoxyCompactList}\item 
+sf\+::\+Sound\+Buffer $\ast$ \hyperlink{classFile_a949e0c451659a270b8f1a8ea9cb7d160}{get\+Buffer} () const \hypertarget{classFile_a949e0c451659a270b8f1a8ea9cb7d160}{}\label{classFile_a949e0c451659a270b8f1a8ea9cb7d160}
+
+\begin{DoxyCompactList}\small\item\em return a pointer to the buffer \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classFile_a3a50279188dd9234358cfef31fc8d56a}{get\+Filename} () const \hypertarget{classFile_a3a50279188dd9234358cfef31fc8d56a}{}\label{classFile_a3a50279188dd9234358cfef31fc8d56a}
+
+\begin{DoxyCompactList}\small\item\em return the \hyperlink{classFile}{File} name \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classFile_af383016d3e5cd1eb78d8c33dfa0e3503}{get\+Filetype} () const \hypertarget{classFile_af383016d3e5cd1eb78d8c33dfa0e3503}{}\label{classFile_af383016d3e5cd1eb78d8c33dfa0e3503}
+
+\begin{DoxyCompactList}\small\item\em return the \hyperlink{classFile}{File} type (based on his extension) \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classFile_a29474554380276789f139f3b15b0fb4a}{get\+Filepath} () const \hypertarget{classFile_a29474554380276789f139f3b15b0fb4a}{}\label{classFile_a29474554380276789f139f3b15b0fb4a}
+
+\begin{DoxyCompactList}\small\item\em return the \hyperlink{classFile}{File} path \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{File@{File}!File@{File}}
+\index{File@{File}!File@{File}}
+\subsubsection[{File(boost\+::filesystem\+::directory\+\_\+entry path)}]{\setlength{\rightskip}{0pt plus 5cm}File\+::\+File (
+\begin{DoxyParamCaption}
+\item[{boost\+::filesystem\+::directory\+\_\+entry}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{classFile_a2aba1ffeec43f6129e2e629d394e667c}{}\label{classFile_a2aba1ffeec43f6129e2e629d394e667c}
+
+
+ctor taking a directory\+\_\+entry as a parameter 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & directory\+\_\+entry path (filepath). \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+File\+System 
+
+\hyperlink{classFile_a2aba1ffeec43f6129e2e629d394e667c}{File()} 
+\end{DoxySeeAlso}
+\index{File@{File}!File@{File}}
+\index{File@{File}!File@{File}}
+\subsubsection[{File(std\+::string path)}]{\setlength{\rightskip}{0pt plus 5cm}File\+::\+File (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{classFile_a4901fbf2e6cebd0adea4ea0cf998530f}{}\label{classFile_a4901fbf2e6cebd0adea4ea0cf998530f}
+
+
+ctor taking a string as a parameter 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & file path \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classFile_a2aba1ffeec43f6129e2e629d394e667c}{File()} 
+\end{DoxySeeAlso}
+\index{File@{File}!File@{File}}
+\index{File@{File}!File@{File}}
+\subsubsection[{File(const File \&f)}]{\setlength{\rightskip}{0pt plus 5cm}File\+::\+File (
+\begin{DoxyParamCaption}
+\item[{const {\bf File} \&}]{f}
+\end{DoxyParamCaption}
+)}\hypertarget{classFile_a410ee9f7dbfec66da258ce51a59f2218}{}\label{classFile_a410ee9f7dbfec66da258ce51a59f2218}
+
+
+copy ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & \hyperlink{classFile}{File} to copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classFile_a2aba1ffeec43f6129e2e629d394e667c}{File()} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\index{File@{File}!init\+Buffer@{init\+Buffer}}
+\index{init\+Buffer@{init\+Buffer}!File@{File}}
+\subsubsection[{init\+Buffer()}]{\setlength{\rightskip}{0pt plus 5cm}void File\+::init\+Buffer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classFile_a0f78315c4a520d293695433242f64649}{}\label{classFile_a0f78315c4a520d293695433242f64649}
+
+
+init the internal buffer 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classFile_a768a2c7f79d26eed019aec81523a4eef}{load()} and \hyperlink{classFile_ace611438e36854bf5c971bd5f12f8ae9}{is\+Loaded()} 
+\end{DoxySeeAlso}
+\index{File@{File}!is\+Loaded@{is\+Loaded}}
+\index{is\+Loaded@{is\+Loaded}!File@{File}}
+\subsubsection[{is\+Loaded() const }]{\setlength{\rightskip}{0pt plus 5cm}bool File\+::is\+Loaded (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFile_ace611438e36854bf5c971bd5f12f8ae9}{}\label{classFile_ace611438e36854bf5c971bd5f12f8ae9}
+
+
+return true if the buffer is already loaded 
+
+\begin{DoxyReturn}{Returns}
+true if the buffer is already loaded 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+\_\+buffer 
+\end{DoxySeeAlso}
+\index{File@{File}!load@{load}}
+\index{load@{load}!File@{File}}
+\subsubsection[{load()}]{\setlength{\rightskip}{0pt plus 5cm}void File\+::load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classFile_a768a2c7f79d26eed019aec81523a4eef}{}\label{classFile_a768a2c7f79d26eed019aec81523a4eef}
+
+
+load the buffer 
+
+\begin{DoxySeeAlso}{See also}
+\+\_\+buffer 
+\end{DoxySeeAlso}
+\index{File@{File}!set\+Properties@{set\+Properties}}
+\index{set\+Properties@{set\+Properties}!File@{File}}
+\subsubsection[{set\+Properties(boost\+::filesystem\+::directory\+\_\+entry path)}]{\setlength{\rightskip}{0pt plus 5cm}void File\+::set\+Properties (
+\begin{DoxyParamCaption}
+\item[{boost\+::filesystem\+::directory\+\_\+entry}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{classFile_adba1bb8e873727a0fce531bbd5f79a05}{}\label{classFile_adba1bb8e873727a0fce531bbd5f79a05}
+
+
+change properties of the file (his path, filename of extension) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & directory\+\_\+entry path (filepath). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+header/File.\+h\item 
+src/File.\+cpp\end{DoxyCompactItemize}

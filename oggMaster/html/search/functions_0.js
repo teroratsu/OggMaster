@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['audiomanager',['audioManager',['../classaudioManager.html#a09546ec1cd8fb656c6d256f9bf485815',1,'audioManager::audioManager()'],['../classaudioManager.html#a6beca9bae38533550aa2fd756f5ccb65',1,'audioManager::audioManager(sf::String)']]]
+  ['attach',['Attach',['../classSoundStream.html#a86f5a61ab02673ad7ff4fe200fe230e8',1,'SoundStream']]],
+  ['audiomanager',['AudioManager',['../classAudioManager.html#ae59d8605c1d706e7bab47d4e8f900d09',1,'AudioManager']]]
 ];
