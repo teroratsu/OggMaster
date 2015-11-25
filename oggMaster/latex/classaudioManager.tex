@@ -1,27 +1,55 @@
 \hypertarget{classaudioManager}{}\section{audio\+Manager Class Reference}
 \label{classaudioManager}\index{audio\+Manager@{audio\+Manager}}
+
+
+The Audio\+Manager handle basic operations such play, pause or stop a sound\+Stream. The audio data are stored in the buffer and are being use by \hyperlink{classSoundStream}{Sound\+Stream} to do all the hard work.  
+
+
+
+
+{\ttfamily \#include $<$audio\+Manager.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries audio\+Manager} (sf\+::\+String)\hypertarget{classaudioManager_a6beca9bae38533550aa2fd756f5ccb65}{}\label{classaudioManager_a6beca9bae38533550aa2fd756f5ccb65}
+\hyperlink{classaudioManager_a09546ec1cd8fb656c6d256f9bf485815}{audio\+Manager} ()\hypertarget{classaudioManager_a09546ec1cd8fb656c6d256f9bf485815}{}\label{classaudioManager_a09546ec1cd8fb656c6d256f9bf485815}
 
-\item 
-bool {\bfseries load\+Music} (sf\+::\+String=\char`\"{}\char`\"{})\hypertarget{classaudioManager_ada6c910430c0c1e7467ad8c6641010f7}{}\label{classaudioManager_ada6c910430c0c1e7467ad8c6641010f7}
+\begin{DoxyCompactList}\small\item\em default ctor \end{DoxyCompactList}\item 
+\hyperlink{classaudioManager_a6beca9bae38533550aa2fd756f5ccb65}{audio\+Manager} (sf\+::\+String)\hypertarget{classaudioManager_a6beca9bae38533550aa2fd756f5ccb65}{}\label{classaudioManager_a6beca9bae38533550aa2fd756f5ccb65}
 
-\item 
-void {\bfseries play} ()\hypertarget{classaudioManager_aa81e9bae4581eb3a4e745635f7245927}{}\label{classaudioManager_aa81e9bae4581eb3a4e745635f7245927}
+\begin{DoxyCompactList}\small\item\em ctor handling auto file assignment \end{DoxyCompactList}\item 
+virtual \hyperlink{classaudioManager_ab6a24a54c7e897c0d872f6a219a48728}{$\sim$audio\+Manager} ()\hypertarget{classaudioManager_ab6a24a54c7e897c0d872f6a219a48728}{}\label{classaudioManager_ab6a24a54c7e897c0d872f6a219a48728}
 
-\item 
-void {\bfseries pause} ()\hypertarget{classaudioManager_a915f6accefbcd9ee687b9aa913b5be5f}{}\label{classaudioManager_a915f6accefbcd9ee687b9aa913b5be5f}
+\begin{DoxyCompactList}\small\item\em default ctor \end{DoxyCompactList}\item 
+bool \hyperlink{classaudioManager_ada6c910430c0c1e7467ad8c6641010f7}{load\+Music} (sf\+::\+String=\char`\"{}\char`\"{})\hypertarget{classaudioManager_ada6c910430c0c1e7467ad8c6641010f7}{}\label{classaudioManager_ada6c910430c0c1e7467ad8c6641010f7}
 
-\item 
-void {\bfseries stop} ()\hypertarget{classaudioManager_a24d4746810b66c3c5db3d041ce37ab36}{}\label{classaudioManager_a24d4746810b66c3c5db3d041ce37ab36}
+\begin{DoxyCompactList}\small\item\em load the file (\+\_\+filename) into the sound\+Buffer \end{DoxyCompactList}\item 
+void \hyperlink{classaudioManager_aa81e9bae4581eb3a4e745635f7245927}{play} ()\hypertarget{classaudioManager_aa81e9bae4581eb3a4e745635f7245927}{}\label{classaudioManager_aa81e9bae4581eb3a4e745635f7245927}
 
-\item 
-void {\bfseries seek} (sf\+::\+Time)\hypertarget{classaudioManager_ae25f98a4737421d17abb94162495faf0}{}\label{classaudioManager_ae25f98a4737421d17abb94162495faf0}
+\begin{DoxyCompactList}\small\item\em play the buffer by calling the Sound\+Stream\+::play() method \end{DoxyCompactList}\item 
+void \hyperlink{classaudioManager_a915f6accefbcd9ee687b9aa913b5be5f}{pause} ()\hypertarget{classaudioManager_a915f6accefbcd9ee687b9aa913b5be5f}{}\label{classaudioManager_a915f6accefbcd9ee687b9aa913b5be5f}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em pause reading buffer by calling the Sound\+Stream\+::pause() method \end{DoxyCompactList}\item 
+void \hyperlink{classaudioManager_a24d4746810b66c3c5db3d041ce37ab36}{stop} ()\hypertarget{classaudioManager_a24d4746810b66c3c5db3d041ce37ab36}{}\label{classaudioManager_a24d4746810b66c3c5db3d041ce37ab36}
 
+\begin{DoxyCompactList}\small\item\em stop reading buffer by calling the Sound\+Stream\+::stop() method \end{DoxyCompactList}\item 
+void \hyperlink{classaudioManager_ae25f98a4737421d17abb94162495faf0}{seek} (sf\+::\+Time)\hypertarget{classaudioManager_ae25f98a4737421d17abb94162495faf0}{}\label{classaudioManager_ae25f98a4737421d17abb94162495faf0}
+
+\begin{DoxyCompactList}\small\item\em seek to the desired time by calling the \hyperlink{classSoundStream_ae7d7a1c32e012792a9bba1df6e121e83}{Sound\+Stream\+::seek()} method \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classSoundWave}{Sound\+Wave} $>$ \hyperlink{classaudioManager_ac8d13904c755818858614b1242598e2b}{get\+Sound\+Wave} ()\hypertarget{classaudioManager_ac8d13904c755818858614b1242598e2b}{}\label{classaudioManager_ac8d13904c755818858614b1242598e2b}
+
+\begin{DoxyCompactList}\small\item\em give the \hyperlink{classIHM}{I\+HM} class an access to sound\+Wave public methods \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Audio\+Manager handle basic operations such play, pause or stop a sound\+Stream. The audio data are stored in the buffer and are being use by \hyperlink{classSoundStream}{Sound\+Stream} to do all the hard work. 
+
+This is the main class for handling audio files \+:
+\begin{DoxyItemize}
+\item load files using load\+Music \+: with as parameter the path to the required file.
+\item play, pause \& stop (\& seek) calling \hyperlink{classSoundStream}{Sound\+Stream} inner methods. (The \hyperlink{classSoundStream}{Sound\+Stream} is initialized once load\+Music method is called).
+\item get the \hyperlink{classFFT}{F\+FT} data by using the inner methods from the \hyperlink{classSoundWave}{Sound\+Wave} handler 
+\end{DoxyItemize}
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

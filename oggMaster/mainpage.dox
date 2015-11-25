@@ -1,0 +1,14 @@
+/*! \mainpage My Personal Index Page
+ *
+ * \section _welcome Welcome !
+ *
+ * Now that you've successfully install oggMaster, let's take a look at the documentation !
+ *	
+ * \htmlonly <a href="classes.html">Link to the class index</a> 
+ * \endhtmlonly
+ *
+ * Also, look at the related pages section to see the \htmlonly <a href="md_README.html">README</a> \endhtmlonly file ! (A more detailed presentation of the project)
+ *
+ * \author Benjamin Pelmoine
+ * \version 1.0.0a
+ */

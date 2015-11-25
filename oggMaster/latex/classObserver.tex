@@ -1,0 +1,70 @@
+\hypertarget{classObserver}{}\section{Observer Class Reference}
+\label{classObserver}\index{Observer@{Observer}}
+Inheritance diagram for Observer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classObserver}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classObserver_ac8217b4f42823bf4c11ce87e238440bd}{update} (sf\+::\+Sound\+Stream\+::\+Chunk \&c, unsigned int s\+\_\+r, unsigned int c\+\_\+c, std\+::size\+\_\+t s)=0
+\begin{DoxyCompactList}\small\item\em update with a new chunk of data \end{DoxyCompactList}\item 
+virtual void \hyperlink{classObserver_a941a32d37a8181ebc5334d136813144c}{update} (sf\+::\+Time t)=0
+\begin{DoxyCompactList}\small\item\em update Soundwave with a given time offset \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Observer@{Observer}!update@{update}}
+\index{update@{update}!Observer@{Observer}}
+\subsubsection[{update(sf\+::\+Sound\+Stream\+::\+Chunk \&c, unsigned int s\+\_\+r, unsigned int c\+\_\+c, std\+::size\+\_\+t s)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Observer\+::update (
+\begin{DoxyParamCaption}
+\item[{sf\+::\+Sound\+Stream\+::\+Chunk \&}]{c, }
+\item[{unsigned int}]{s\+\_\+r, }
+\item[{unsigned int}]{c\+\_\+c, }
+\item[{std\+::size\+\_\+t}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classObserver_ac8217b4f42823bf4c11ce87e238440bd}{}\label{classObserver_ac8217b4f42823bf4c11ce87e238440bd}
+
+
+update with a new chunk of data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & chunk of data \\
+\hline
+{\em s\+\_\+r} & Sample rate \\
+\hline
+{\em c\+\_\+c} & Channel count \\
+\hline
+{\em s} & first sample of the chunk \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classObserver_ac8217b4f42823bf4c11ce87e238440bd}{update()} 
+\end{DoxySeeAlso}
+\index{Observer@{Observer}!update@{update}}
+\index{update@{update}!Observer@{Observer}}
+\subsubsection[{update(sf\+::\+Time t)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Observer\+::update (
+\begin{DoxyParamCaption}
+\item[{sf\+::\+Time}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classObserver_a941a32d37a8181ebc5334d136813144c}{}\label{classObserver_a941a32d37a8181ebc5334d136813144c}
+
+
+update Soundwave with a given time offset 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & time offset \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classObserver_ac8217b4f42823bf4c11ce87e238440bd}{update()} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+header/Observer.\+h\end{DoxyCompactItemize}

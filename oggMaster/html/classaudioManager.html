@@ -89,29 +89,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">audioManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The AudioManager handle basic operations such play, pause or stop a soundStream. The audio data are stored in the buffer and are being use by <a class="el" href="classSoundStream.html">SoundStream</a> to do all the hard work.  
+ <a href="classaudioManager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="audioManager_8h_source.html">audioManager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a09546ec1cd8fb656c6d256f9bf485815"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09546ec1cd8fb656c6d256f9bf485815"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#a09546ec1cd8fb656c6d256f9bf485815">audioManager</a> ()</td></tr>
+<tr class="memdesc:a09546ec1cd8fb656c6d256f9bf485815"><td class="mdescLeft">&#160;</td><td class="mdescRight">default ctor <br /></td></tr>
+<tr class="separator:a09546ec1cd8fb656c6d256f9bf485815"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6beca9bae38533550aa2fd756f5ccb65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6beca9bae38533550aa2fd756f5ccb65"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>audioManager</b> (sf::String)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#a6beca9bae38533550aa2fd756f5ccb65">audioManager</a> (sf::String)</td></tr>
+<tr class="memdesc:a6beca9bae38533550aa2fd756f5ccb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">ctor handling auto file assignment <br /></td></tr>
 <tr class="separator:a6beca9bae38533550aa2fd756f5ccb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6a24a54c7e897c0d872f6a219a48728"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6a24a54c7e897c0d872f6a219a48728"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#ab6a24a54c7e897c0d872f6a219a48728">~audioManager</a> ()</td></tr>
+<tr class="memdesc:ab6a24a54c7e897c0d872f6a219a48728"><td class="mdescLeft">&#160;</td><td class="mdescRight">default ctor <br /></td></tr>
+<tr class="separator:ab6a24a54c7e897c0d872f6a219a48728"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada6c910430c0c1e7467ad8c6641010f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada6c910430c0c1e7467ad8c6641010f7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadMusic</b> (sf::String=&quot;&quot;)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#ada6c910430c0c1e7467ad8c6641010f7">loadMusic</a> (sf::String=&quot;&quot;)</td></tr>
+<tr class="memdesc:ada6c910430c0c1e7467ad8c6641010f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">load the file (_filename) into the soundBuffer <br /></td></tr>
 <tr class="separator:ada6c910430c0c1e7467ad8c6641010f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa81e9bae4581eb3a4e745635f7245927"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa81e9bae4581eb3a4e745635f7245927"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>play</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#aa81e9bae4581eb3a4e745635f7245927">play</a> ()</td></tr>
+<tr class="memdesc:aa81e9bae4581eb3a4e745635f7245927"><td class="mdescLeft">&#160;</td><td class="mdescRight">play the buffer by calling the SoundStream::play() method <br /></td></tr>
 <tr class="separator:aa81e9bae4581eb3a4e745635f7245927"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a915f6accefbcd9ee687b9aa913b5be5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a915f6accefbcd9ee687b9aa913b5be5f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pause</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#a915f6accefbcd9ee687b9aa913b5be5f">pause</a> ()</td></tr>
+<tr class="memdesc:a915f6accefbcd9ee687b9aa913b5be5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">pause reading buffer by calling the SoundStream::pause() method <br /></td></tr>
 <tr class="separator:a915f6accefbcd9ee687b9aa913b5be5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24d4746810b66c3c5db3d041ce37ab36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24d4746810b66c3c5db3d041ce37ab36"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#a24d4746810b66c3c5db3d041ce37ab36">stop</a> ()</td></tr>
+<tr class="memdesc:a24d4746810b66c3c5db3d041ce37ab36"><td class="mdescLeft">&#160;</td><td class="mdescRight">stop reading buffer by calling the SoundStream::stop() method <br /></td></tr>
 <tr class="separator:a24d4746810b66c3c5db3d041ce37ab36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae25f98a4737421d17abb94162495faf0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae25f98a4737421d17abb94162495faf0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>seek</b> (sf::Time)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#ae25f98a4737421d17abb94162495faf0">seek</a> (sf::Time)</td></tr>
+<tr class="memdesc:ae25f98a4737421d17abb94162495faf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">seek to the desired time by calling the <a class="el" href="classSoundStream.html#ae7d7a1c32e012792a9bba1df6e121e83" title="load ">SoundStream::seek()</a> method <br /></td></tr>
 <tr class="separator:ae25f98a4737421d17abb94162495faf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d13904c755818858614b1242598e2b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8d13904c755818858614b1242598e2b"></a>
+std::shared_ptr&lt; <a class="el" href="classSoundWave.html">SoundWave</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaudioManager.html#ac8d13904c755818858614b1242598e2b">getSoundWave</a> ()</td></tr>
+<tr class="memdesc:ac8d13904c755818858614b1242598e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">give the <a class="el" href="classIHM.html">IHM</a> class an access to soundWave public methods <br /></td></tr>
+<tr class="separator:ac8d13904c755818858614b1242598e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The AudioManager handle basic operations such play, pause or stop a soundStream. The audio data are stored in the buffer and are being use by <a class="el" href="classSoundStream.html">SoundStream</a> to do all the hard work. </p>
+<p>This is the main class for handling audio files :</p><ul>
+<li>load files using loadMusic : with as parameter the path to the required file.</li>
+<li>play, pause &amp; stop (&amp; seek) calling <a class="el" href="classSoundStream.html">SoundStream</a> inner methods. (The <a class="el" href="classSoundStream.html">SoundStream</a> is initialized once loadMusic method is called).</li>
+<li>get the <a class="el" href="classFFT.html">FFT</a> data by using the inner methods from the <a class="el" href="classSoundWave.html">SoundWave</a> handler </li>
+</ul>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>header/<a class="el" href="audioManager_8h_source.html">audioManager.h</a></li>
 <li>src/audioManager.cpp</li>
 </ul>

@@ -9,22 +9,115 @@ Inheritance diagram for Sound\+Stream\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classSoundStream_a65c3f112bdc3373c231ddcd0767fd031}{load} (const sf\+::\+Sound\+Buffer \&)
-\item 
-void {\bfseries seek} (sf\+::\+Time)\hypertarget{classSoundStream_ae7d7a1c32e012792a9bba1df6e121e83}{}\label{classSoundStream_ae7d7a1c32e012792a9bba1df6e121e83}
+\hyperlink{classSoundStream_a657d7c346a127b40babbcee278a553e3}{Sound\+Stream} (\hyperlink{classObserver}{Observer} $\ast$)\hypertarget{classSoundStream_a657d7c346a127b40babbcee278a553e3}{}\label{classSoundStream_a657d7c346a127b40babbcee278a553e3}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em ctor to initialize vite a given module (\hyperlink{classSoundWave}{Sound\+Wave}) \end{DoxyCompactList}\item 
+void \hyperlink{classSoundStream_a6a7e2f763ae6e8def2abe4944b32e1ee}{load} (const sf\+::\+Sound\+Buffer \&b)
+\begin{DoxyCompactList}\small\item\em load a given buffer to the \+\_\+stream \end{DoxyCompactList}\item 
+void \hyperlink{classSoundStream_ad6d518aee983bc841767e884645bac8a}{seek} (sf\+::\+Time t)
+\begin{DoxyCompactList}\small\item\em seek bufferto the desired time \end{DoxyCompactList}\item 
+sf\+::\+Time \hyperlink{classSoundStream_ad3db0e2917077836eda35aec5ce152bc}{get\+P\+Offset} ()
+\begin{DoxyCompactList}\small\item\em return the playing offset \end{DoxyCompactList}\item 
+void \hyperlink{classSoundStream_a9776d4bdacd2d310290d0107ae0817f7}{update\+Obs} ()\hypertarget{classSoundStream_a9776d4bdacd2d310290d0107ae0817f7}{}\label{classSoundStream_a9776d4bdacd2d310290d0107ae0817f7}
+
+\begin{DoxyCompactList}\small\item\em notify \hyperlink{classObserver}{Observer} with time elasped \end{DoxyCompactList}\item 
+bool \hyperlink{classSoundStream_a73e8f2450e0e626ea99d70715b586edc}{is\+Buffer\+End} ()\hypertarget{classSoundStream_a73e8f2450e0e626ea99d70715b586edc}{}\label{classSoundStream_a73e8f2450e0e626ea99d70715b586edc}
+
+\begin{DoxyCompactList}\small\item\em return true if the current buffer is fully played \end{DoxyCompactList}\item 
+void \hyperlink{classSoundStream_a86f5a61ab02673ad7ff4fe200fe230e8}{Attach} (\hyperlink{classObserver}{Observer} $\ast$o)
+\begin{DoxyCompactList}\small\item\em sub an \hyperlink{classObserver}{Observer} to the audio flux \end{DoxyCompactList}\item 
+void \hyperlink{classSoundStream_a89e1c0569896ba1e7a28a6e381e675af}{Detach} (\hyperlink{classObserver}{Observer} $\ast$o)
+\begin{DoxyCompactList}\small\item\em unsub an \hyperlink{classObserver}{Observer} to the audio flux \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
+\index{Sound\+Stream@{Sound\+Stream}!Attach@{Attach}}
+\index{Attach@{Attach}!Sound\+Stream@{Sound\+Stream}}
+\subsubsection[{Attach(\+Observer $\ast$o)}]{\setlength{\rightskip}{0pt plus 5cm}void Sound\+Stream\+::\+Attach (
+\begin{DoxyParamCaption}
+\item[{{\bf Observer} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\hypertarget{classSoundStream_a86f5a61ab02673ad7ff4fe200fe230e8}{}\label{classSoundStream_a86f5a61ab02673ad7ff4fe200fe230e8}
+
+
+sub an \hyperlink{classObserver}{Observer} to the audio flux 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & pointer to an \hyperlink{classObserver}{Observer}\\
+\hline
+\end{DoxyParams}
+\hyperlink{classObserver}{Observer} pattern impementation \index{Sound\+Stream@{Sound\+Stream}!Detach@{Detach}}
+\index{Detach@{Detach}!Sound\+Stream@{Sound\+Stream}}
+\subsubsection[{Detach(\+Observer $\ast$o)}]{\setlength{\rightskip}{0pt plus 5cm}void Sound\+Stream\+::\+Detach (
+\begin{DoxyParamCaption}
+\item[{{\bf Observer} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\hypertarget{classSoundStream_a89e1c0569896ba1e7a28a6e381e675af}{}\label{classSoundStream_a89e1c0569896ba1e7a28a6e381e675af}
+
+
+unsub an \hyperlink{classObserver}{Observer} to the audio flux 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & pointer to an \hyperlink{classObserver}{Observer} \\
+\hline
+\end{DoxyParams}
+\index{Sound\+Stream@{Sound\+Stream}!get\+P\+Offset@{get\+P\+Offset}}
+\index{get\+P\+Offset@{get\+P\+Offset}!Sound\+Stream@{Sound\+Stream}}
+\subsubsection[{get\+P\+Offset()}]{\setlength{\rightskip}{0pt plus 5cm}sf\+::\+Time Sound\+Stream\+::get\+P\+Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSoundStream_ad3db0e2917077836eda35aec5ce152bc}{}\label{classSoundStream_ad3db0e2917077836eda35aec5ce152bc}
+
+
+return the playing offset 
+
+\begin{DoxyReturn}{Returns}
+the playing offset 
+\end{DoxyReturn}
 \index{Sound\+Stream@{Sound\+Stream}!load@{load}}
 \index{load@{load}!Sound\+Stream@{Sound\+Stream}}
-\subsubsection[{load(const sf\+::\+Sound\+Buffer \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Sound\+Stream\+::load (
+\subsubsection[{load(const sf\+::\+Sound\+Buffer \&b)}]{\setlength{\rightskip}{0pt plus 5cm}void Sound\+Stream\+::load (
 \begin{DoxyParamCaption}
 \item[{const sf\+::\+Sound\+Buffer \&}]{buffer}
 \end{DoxyParamCaption}
-)}\hypertarget{classSoundStream_a65c3f112bdc3373c231ddcd0767fd031}{}\label{classSoundStream_a65c3f112bdc3373c231ddcd0767fd031}
-\hyperlink{classSoundStream}{Sound\+Stream} \+: Public 
+)}\hypertarget{classSoundStream_a6a7e2f763ae6e8def2abe4944b32e1ee}{}\label{classSoundStream_a6a7e2f763ae6e8def2abe4944b32e1ee}
+
+
+load a given buffer to the \+\_\+stream 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & buffer to load \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+sf\+::\+Sound\+Stream sf\+::\+Sound\+Buffer
+\end{DoxySeeAlso}
+\hyperlink{classSoundStream}{Sound\+Stream} \+: Public \index{Sound\+Stream@{Sound\+Stream}!seek@{seek}}
+\index{seek@{seek}!Sound\+Stream@{Sound\+Stream}}
+\subsubsection[{seek(sf\+::\+Time t)}]{\setlength{\rightskip}{0pt plus 5cm}void Sound\+Stream\+::seek (
+\begin{DoxyParamCaption}
+\item[{sf\+::\+Time}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{classSoundStream_ad6d518aee983bc841767e884645bac8a}{}\label{classSoundStream_ad6d518aee983bc841767e884645bac8a}
+
+
+seek bufferto the desired time 
+
+load
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & time offset \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+sf\+::\+Timeseek to the desired time according to the audio file duration 
+\end{DoxySeeAlso}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

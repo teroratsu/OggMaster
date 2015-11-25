@@ -1,0 +1,111 @@
+\hypertarget{classFileManager}{}\section{File\+Manager Class Reference}
+\label{classFileManager}\index{File\+Manager@{File\+Manager}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classFileManager_a680c9b330d3e7413b060f6a60469f3ea}{find\+All\+Files} (const std\+::string \&path\+To\+Directory, bool iterate\+Sub\+Folders=false)
+\begin{DoxyCompactList}\small\item\em load files from given folder into the vector \end{DoxyCompactList}\item 
+\hyperlink{classFile}{File} $\ast$ \hyperlink{classFileManager_a68eefdb3cac178dcdc362fa0540935f1}{get\+File} (std\+::string file)
+\begin{DoxyCompactList}\small\item\em return the desired file according to the input string \end{DoxyCompactList}\item 
+\hyperlink{classFile}{File} $\ast$ \hyperlink{classFileManager_add9d81378b7f8b2a4ca16534fb5e6e65}{cur} ()\hypertarget{classFileManager_add9d81378b7f8b2a4ca16534fb5e6e65}{}\label{classFileManager_add9d81378b7f8b2a4ca16534fb5e6e65}
+
+\begin{DoxyCompactList}\small\item\em return the current file \end{DoxyCompactList}\item 
+\hyperlink{classFile}{File} $\ast$ \hyperlink{classFileManager_a2febd9b963808301e5613725003c8a69}{next} ()\hypertarget{classFileManager_a2febd9b963808301e5613725003c8a69}{}\label{classFileManager_a2febd9b963808301e5613725003c8a69}
+
+\begin{DoxyCompactList}\small\item\em return the next file in the list \end{DoxyCompactList}\item 
+\hyperlink{classFile}{File} $\ast$ \hyperlink{classFileManager_a524986b94326739ec42aab6c9b7c1f78}{prev} ()\hypertarget{classFileManager_a524986b94326739ec42aab6c9b7c1f78}{}\label{classFileManager_a524986b94326739ec42aab6c9b7c1f78}
+
+\begin{DoxyCompactList}\small\item\em return the previous file in the list \end{DoxyCompactList}\item 
+void \hyperlink{classFileManager_a9cc336f0e606131f1410b45e9784c0d2}{pre\+Load} ()\hypertarget{classFileManager_a9cc336f0e606131f1410b45e9784c0d2}{}\label{classFileManager_a9cc336f0e606131f1410b45e9784c0d2}
+
+\begin{DoxyCompactList}\small\item\em load the next\+File\textquotesingle{}s buffer \end{DoxyCompactList}\item 
+void \hyperlink{classFileManager_a42b87180ceef19fbd5725e2116371b3c}{delete\+File} (std\+::string file)
+\begin{DoxyCompactList}\small\item\em delete file \end{DoxyCompactList}\item 
+void \hyperlink{classFileManager_a220dbfbeb0f943987333eccd55bccdde}{fill\+Vector} (std\+::vector$<$ \hyperlink{classFile}{File} $>$ \&in\+\_\+)
+\begin{DoxyCompactList}\small\item\em fill the in\+\_\+ vector with file list \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{File\+Manager@{File\+Manager}!delete\+File@{delete\+File}}
+\index{delete\+File@{delete\+File}!File\+Manager@{File\+Manager}}
+\subsubsection[{delete\+File(std\+::string file)}]{\setlength{\rightskip}{0pt plus 5cm}void File\+Manager\+::delete\+File (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{file}
+\end{DoxyParamCaption}
+)}\hypertarget{classFileManager_a42b87180ceef19fbd5725e2116371b3c}{}\label{classFileManager_a42b87180ceef19fbd5725e2116371b3c}
+
+
+delete file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & file to delete (based on the filename)delete the given file \\
+\hline
+\end{DoxyParams}
+\index{File\+Manager@{File\+Manager}!fill\+Vector@{fill\+Vector}}
+\index{fill\+Vector@{fill\+Vector}!File\+Manager@{File\+Manager}}
+\subsubsection[{fill\+Vector(std\+::vector$<$ File $>$ \&in\+\_\+)}]{\setlength{\rightskip}{0pt plus 5cm}void File\+Manager\+::fill\+Vector (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf File} $>$ \&}]{in\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classFileManager_a220dbfbeb0f943987333eccd55bccdde}{}\label{classFileManager_a220dbfbeb0f943987333eccd55bccdde}
+
+
+fill the in\+\_\+ vector with file list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+\_\+} & vector of \hyperlink{classFile}{File} to fill \\
+\hline
+\end{DoxyParams}
+\index{File\+Manager@{File\+Manager}!find\+All\+Files@{find\+All\+Files}}
+\index{find\+All\+Files@{find\+All\+Files}!File\+Manager@{File\+Manager}}
+\subsubsection[{find\+All\+Files(const std\+::string \&path\+To\+Directory, bool iterate\+Sub\+Folders=false)}]{\setlength{\rightskip}{0pt plus 5cm}void File\+Manager\+::find\+All\+Files (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{path\+To\+Directory, }
+\item[{bool}]{iterate\+Sub\+Folders = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hypertarget{classFileManager_a680c9b330d3e7413b060f6a60469f3ea}{}\label{classFileManager_a680c9b330d3e7413b060f6a60469f3ea}
+
+
+load files from given folder into the vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::string} & \+: folder to iterate \\
+\hline
+{\em bool} & \+: true if you want to iterate the sub folders (false by default)\\
+\hline
+{\em path\+To\+Directory} & path to the directory where to search for files \\
+\hline
+{\em iterate\+Sub\+Folders} & true if you want to iterate the sub folders \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+\_\+files 
+\end{DoxySeeAlso}
+\index{File\+Manager@{File\+Manager}!get\+File@{get\+File}}
+\index{get\+File@{get\+File}!File\+Manager@{File\+Manager}}
+\subsubsection[{get\+File(std\+::string file)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf File} $\ast$ File\+Manager\+::get\+File (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{file}
+\end{DoxyParamCaption}
+)}\hypertarget{classFileManager_a68eefdb3cac178dcdc362fa0540935f1}{}\label{classFileManager_a68eefdb3cac178dcdc362fa0540935f1}
+
+
+return the desired file according to the input string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & file to get (based on the filename) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the desired file according to the input 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+header/File\+Manager.\+h\item 
+src/File\+Manager.\+cpp\end{DoxyCompactItemize}

@@ -100,14 +100,103 @@ Inheritance diagram for SoundStream:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a65c3f112bdc3373c231ddcd0767fd031"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#a65c3f112bdc3373c231ddcd0767fd031">load</a> (const sf::SoundBuffer &amp;)</td></tr>
-<tr class="separator:a65c3f112bdc3373c231ddcd0767fd031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7d7a1c32e012792a9bba1df6e121e83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae7d7a1c32e012792a9bba1df6e121e83"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>seek</b> (sf::Time)</td></tr>
-<tr class="separator:ae7d7a1c32e012792a9bba1df6e121e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a657d7c346a127b40babbcee278a553e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a657d7c346a127b40babbcee278a553e3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#a657d7c346a127b40babbcee278a553e3">SoundStream</a> (<a class="el" href="classObserver.html">Observer</a> *)</td></tr>
+<tr class="memdesc:a657d7c346a127b40babbcee278a553e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">ctor to initialize vite a given module (<a class="el" href="classSoundWave.html">SoundWave</a>) <br /></td></tr>
+<tr class="separator:a657d7c346a127b40babbcee278a553e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a7e2f763ae6e8def2abe4944b32e1ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#a6a7e2f763ae6e8def2abe4944b32e1ee">load</a> (const sf::SoundBuffer &amp;b)</td></tr>
+<tr class="memdesc:a6a7e2f763ae6e8def2abe4944b32e1ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">load a given buffer to the _stream  <a href="#a6a7e2f763ae6e8def2abe4944b32e1ee">More...</a><br /></td></tr>
+<tr class="separator:a6a7e2f763ae6e8def2abe4944b32e1ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6d518aee983bc841767e884645bac8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#ad6d518aee983bc841767e884645bac8a">seek</a> (sf::Time t)</td></tr>
+<tr class="memdesc:ad6d518aee983bc841767e884645bac8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">seek bufferto the desired time  <a href="#ad6d518aee983bc841767e884645bac8a">More...</a><br /></td></tr>
+<tr class="separator:ad6d518aee983bc841767e884645bac8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3db0e2917077836eda35aec5ce152bc"><td class="memItemLeft" align="right" valign="top">sf::Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#ad3db0e2917077836eda35aec5ce152bc">getPOffset</a> ()</td></tr>
+<tr class="memdesc:ad3db0e2917077836eda35aec5ce152bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the playing offset  <a href="#ad3db0e2917077836eda35aec5ce152bc">More...</a><br /></td></tr>
+<tr class="separator:ad3db0e2917077836eda35aec5ce152bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9776d4bdacd2d310290d0107ae0817f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9776d4bdacd2d310290d0107ae0817f7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#a9776d4bdacd2d310290d0107ae0817f7">updateObs</a> ()</td></tr>
+<tr class="memdesc:a9776d4bdacd2d310290d0107ae0817f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">notify <a class="el" href="classObserver.html">Observer</a> with time elasped <br /></td></tr>
+<tr class="separator:a9776d4bdacd2d310290d0107ae0817f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e8f2450e0e626ea99d70715b586edc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73e8f2450e0e626ea99d70715b586edc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#a73e8f2450e0e626ea99d70715b586edc">isBufferEnd</a> ()</td></tr>
+<tr class="memdesc:a73e8f2450e0e626ea99d70715b586edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">return true if the current buffer is fully played <br /></td></tr>
+<tr class="separator:a73e8f2450e0e626ea99d70715b586edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86f5a61ab02673ad7ff4fe200fe230e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#a86f5a61ab02673ad7ff4fe200fe230e8">Attach</a> (<a class="el" href="classObserver.html">Observer</a> *o)</td></tr>
+<tr class="memdesc:a86f5a61ab02673ad7ff4fe200fe230e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">sub an <a class="el" href="classObserver.html">Observer</a> to the audio flux  <a href="#a86f5a61ab02673ad7ff4fe200fe230e8">More...</a><br /></td></tr>
+<tr class="separator:a86f5a61ab02673ad7ff4fe200fe230e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e1c0569896ba1e7a28a6e381e675af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSoundStream.html#a89e1c0569896ba1e7a28a6e381e675af">Detach</a> (<a class="el" href="classObserver.html">Observer</a> *o)</td></tr>
+<tr class="memdesc:a89e1c0569896ba1e7a28a6e381e675af"><td class="mdescLeft">&#160;</td><td class="mdescRight">unsub an <a class="el" href="classObserver.html">Observer</a> to the audio flux  <a href="#a89e1c0569896ba1e7a28a6e381e675af">More...</a><br /></td></tr>
+<tr class="separator:a89e1c0569896ba1e7a28a6e381e675af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a65c3f112bdc3373c231ddcd0767fd031"></a>
+<a class="anchor" id="a86f5a61ab02673ad7ff4fe200fe230e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SoundStream::Attach </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classObserver.html">Observer</a> *&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sub an <a class="el" href="classObserver.html">Observer</a> to the audio flux </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o</td><td>pointer to an <a class="el" href="classObserver.html">Observer</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p><a class="el" href="classObserver.html">Observer</a> pattern impementation </p>
+
+</div>
+</div>
+<a class="anchor" id="a89e1c0569896ba1e7a28a6e381e675af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SoundStream::Detach </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classObserver.html">Observer</a> *&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>unsub an <a class="el" href="classObserver.html">Observer</a> to the audio flux </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o</td><td>pointer to an <a class="el" href="classObserver.html">Observer</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad3db0e2917077836eda35aec5ce152bc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Time SoundStream::getPOffset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>return the playing offset </p>
+<dl class="section return"><dt>Returns</dt><dd>the playing offset </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6a7e2f763ae6e8def2abe4944b32e1ee"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -120,7 +209,42 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>seek</b> (sf::Time)</
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>load a given buffer to the _stream </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>buffer to load </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>sf::SoundStream sf::SoundBuffer</dd></dl>
 <p><a class="el" href="classSoundStream.html">SoundStream</a> : Public </p>
+
+</div>
+</div>
+<a class="anchor" id="ad6d518aee983bc841767e884645bac8a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SoundStream::seek </td>
+          <td>(</td>
+          <td class="paramtype">sf::Time&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>seek bufferto the desired time </p>
+<p>load</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>time offset </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>sf::Timeseek to the desired time according to the audio file duration </dd></dl>
 
 </div>
 </div>

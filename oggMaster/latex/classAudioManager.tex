@@ -1,0 +1,397 @@
+\hypertarget{classAudioManager}{}\section{Audio\+Manager Class Reference}
+\label{classAudioManager}\index{Audio\+Manager@{Audio\+Manager}}
+
+
+The \hyperlink{classAudioManager}{Audio\+Manager} handle basic operations such play, pause or stop a sound\+Stream. The audio data are stored in the buffer and are being use by \hyperlink{classSoundStream}{Sound\+Stream} to do all the hard work.  
+
+
+
+
+{\ttfamily \#include $<$Audio\+Manager.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAudioManager_ae59d8605c1d706e7bab47d4e8f900d09}{Audio\+Manager} ()
+\begin{DoxyCompactList}\small\item\em default ctor \end{DoxyCompactList}\item 
+virtual \hyperlink{classAudioManager_ad94dc46723c6d7cf8c81fc3772a842aa}{$\sim$\+Audio\+Manager} ()
+\begin{DoxyCompactList}\small\item\em default dtor \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a9ccfd245fc3afd6c9679a276c2670ce3}{load\+Music} (std\+::string file\+Name)
+\begin{DoxyCompactList}\small\item\em given a file name, load the wanted file from the \hyperlink{classFileManager}{File\+Manager} \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a739a57d9db42dda76559f8644701ce2b}{load\+Music\+From\+Folder} (std\+::string folder\+Path, bool it\+Sub\+Folders=true)
+\begin{DoxyCompactList}\small\item\em given a folder path and a boolean, call the associated method of the \hyperlink{classFileManager}{File\+Manager} \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a0368c3d88f8a10260beee3f7c241e826}{play} ()
+\begin{DoxyCompactList}\small\item\em play the audio file loaded \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a717679472d89e8cab81defcb217bc797}{pause} ()
+\begin{DoxyCompactList}\small\item\em pause the audio file loaded \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a9d9d7ef0f5570ab1269ad54358cd3052}{stop} ()
+\begin{DoxyCompactList}\small\item\em stop the audio file loaded \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a85dcceef2457dbe3bab535a196939ee3}{next} ()
+\begin{DoxyCompactList}\small\item\em play the next audio file \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a52f9fea4eb26acfa96272953483e88d9}{prev} ()
+\begin{DoxyCompactList}\small\item\em play the previous audio file \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a92ce12738c28d9fbe99539976a1959bc}{seek} (sf\+::\+Time t)
+\begin{DoxyCompactList}\small\item\em seek to the desired time by calling the \hyperlink{classSoundStream_ad6d518aee983bc841767e884645bac8a}{Sound\+Stream\+::seek()} method. \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a63bca3852ff5b316fa72e56c3f999e8e}{seek} (const float \&t)
+\begin{DoxyCompactList}\small\item\em seek to the desired time by calling the \hyperlink{classSoundStream_ad6d518aee983bc841767e884645bac8a}{Sound\+Stream\+::seek()} method (after a little conversion from float to sf\+::\+Time). \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_a716945a9f65dc8b4cb83d1b034ac16dc}{set\+Volume} (const float \&t)
+\begin{DoxyCompactList}\small\item\em change the volume in the \+\_\+stream properties \end{DoxyCompactList}\item 
+float $\ast$ \hyperlink{classAudioManager_a97d86d8a7a19aaf875b1e1e7febe8eff}{get\+Soundwave} ()\hypertarget{classAudioManager_a97d86d8a7a19aaf875b1e1e7febe8eff}{}\label{classAudioManager_a97d86d8a7a19aaf875b1e1e7febe8eff}
+
+\begin{DoxyCompactList}\small\item\em return the magnitude (the main float array for visualization routine) \end{DoxyCompactList}\item 
+float $\ast$ \hyperlink{classAudioManager_a32bbbfd86fba23792377d08b0ef80c19}{get\+Power} ()\hypertarget{classAudioManager_a32bbbfd86fba23792377d08b0ef80c19}{}\label{classAudioManager_a32bbbfd86fba23792377d08b0ef80c19}
+
+\begin{DoxyCompactList}\small\item\em return the power array whiwh can be usefull for certain stuff \end{DoxyCompactList}\item 
+float $\ast$ \hyperlink{classAudioManager_aed9c2968548b1c3f388616423fc45ad8}{get\+Phase} ()\hypertarget{classAudioManager_aed9c2968548b1c3f388616423fc45ad8}{}\label{classAudioManager_aed9c2968548b1c3f388616423fc45ad8}
+
+\begin{DoxyCompactList}\small\item\em return the phase (not often use but can be usefull for some kind of audio processing) \end{DoxyCompactList}\item 
+float \hyperlink{classAudioManager_ac7e561ba8fd78bfae235bfc18bf83ce1}{get\+Avg\+Power} ()\hypertarget{classAudioManager_ac7e561ba8fd78bfae235bfc18bf83ce1}{}\label{classAudioManager_ac7e561ba8fd78bfae235bfc18bf83ce1}
+
+\begin{DoxyCompactList}\small\item\em return the average power, pretty usefull for bass detection \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classAudioManager_a8a339e04973fab7321e1ef38ee10e996}{get\+Cur\+Playing\+Song} () const 
+\begin{DoxyCompactList}\small\item\em return the current file name \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_aad81f933eb8aed87c2352b32fcbe9782}{get\+All\+Files} (std\+::vector$<$ \hyperlink{classFile}{File} $>$ \&v)
+\begin{DoxyCompactList}\small\item\em fill the given array with the \+\_\+fmanager file list \end{DoxyCompactList}\item 
+void \hyperlink{classAudioManager_af342d01281d35deac6df2f5fa729c0ef}{update} ()
+\begin{DoxyCompactList}\small\item\em public update mainly for moduleslike \hyperlink{classSoundWave}{Sound\+Wave} \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classAudioManager_abedd7ab672ed15b3480cfacb1b7339b9}{get\+Duration} ()
+\begin{DoxyCompactList}\small\item\em return the actual duration as a string \end{DoxyCompactList}\item 
+float \hyperlink{classAudioManager_a331f7e948fa9a1e1d1a49f1fb48112c4}{get\+DurationP} ()
+\begin{DoxyCompactList}\small\item\em return the actual duration as a float \end{DoxyCompactList}\item 
+float \hyperlink{classAudioManager_a4d8a968f1a5741d4c9faa79bbcb95c79}{get\+Volume} ()
+\begin{DoxyCompactList}\small\item\em return the current volume \end{DoxyCompactList}\item 
+sf\+::\+Sound\+Source\+::\+Status \hyperlink{classAudioManager_a9ce4d8082a194bf780038a0aee942468}{get\+Status} ()
+\begin{DoxyCompactList}\small\item\em return the status of the stream \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classAudioManager}{Audio\+Manager} handle basic operations such play, pause or stop a sound\+Stream. The audio data are stored in the buffer and are being use by \hyperlink{classSoundStream}{Sound\+Stream} to do all the hard work. 
+
+This is the main class to handle audio files \+:
+\begin{DoxyItemize}
+\item load files using load\+Music \+: with as parameter the path to the required file.
+\item play, pause \& stop (\& seek) calling \hyperlink{classSoundStream}{Sound\+Stream} inner methods. (The \hyperlink{classSoundStream}{Sound\+Stream} is initialized once load\+Music method is called). 
+\end{DoxyItemize}
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Audio\+Manager@{Audio\+Manager}!Audio\+Manager@{Audio\+Manager}}
+\index{Audio\+Manager@{Audio\+Manager}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{Audio\+Manager()}]{\setlength{\rightskip}{0pt plus 5cm}Audio\+Manager\+::\+Audio\+Manager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_ae59d8605c1d706e7bab47d4e8f900d09}{}\label{classAudioManager_ae59d8605c1d706e7bab47d4e8f900d09}
+
+
+default ctor 
+
+$<$ init the \+\_\+stream object with a instance of a \hyperlink{classSoundStream}{Sound\+Stream} class
+
+$<$ init the \+\_\+buffer object with a instance of a sf\+::\+Sound\+Buffer class
+
+$<$ init the \+\_\+wave object with a instance of a \hyperlink{classSoundWave}{Sound\+Wave} class \index{Audio\+Manager@{Audio\+Manager}!````~Audio\+Manager@{$\sim$\+Audio\+Manager}}
+\index{````~Audio\+Manager@{$\sim$\+Audio\+Manager}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{$\sim$\+Audio\+Manager()}]{\setlength{\rightskip}{0pt plus 5cm}Audio\+Manager\+::$\sim$\+Audio\+Manager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classAudioManager_ad94dc46723c6d7cf8c81fc3772a842aa}{}\label{classAudioManager_ad94dc46723c6d7cf8c81fc3772a842aa}
+
+
+default dtor 
+
+$<$ The audio buffer must be stopped before destroying the actual \hyperlink{classAudioManager}{Audio\+Manager} object /! 
+
+\subsection{Member Function Documentation}
+\index{Audio\+Manager@{Audio\+Manager}!get\+All\+Files@{get\+All\+Files}}
+\index{get\+All\+Files@{get\+All\+Files}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{get\+All\+Files(std\+::vector$<$ File $>$ \&v)}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::get\+All\+Files (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf File} $>$ \&}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_aad81f933eb8aed87c2352b32fcbe9782}{}\label{classAudioManager_aad81f933eb8aed87c2352b32fcbe9782}
+
+
+fill the given array with the \+\_\+fmanager file list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \+: vector of files to fill \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+\_\+fmanager 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!get\+Cur\+Playing\+Song@{get\+Cur\+Playing\+Song}}
+\index{get\+Cur\+Playing\+Song@{get\+Cur\+Playing\+Song}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{get\+Cur\+Playing\+Song() const }]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Audio\+Manager\+::get\+Cur\+Playing\+Song (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAudioManager_a8a339e04973fab7321e1ef38ee10e996}{}\label{classAudioManager_a8a339e04973fab7321e1ef38ee10e996}
+
+
+return the current file name 
+
+\begin{DoxyReturn}{Returns}
+the current file name 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+\_\+cur\+File 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!get\+Duration@{get\+Duration}}
+\index{get\+Duration@{get\+Duration}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{get\+Duration()}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Audio\+Manager\+::get\+Duration (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_abedd7ab672ed15b3480cfacb1b7339b9}{}\label{classAudioManager_abedd7ab672ed15b3480cfacb1b7339b9}
+
+
+return the actual duration as a string 
+
+\begin{DoxyReturn}{Returns}
+actual duration string 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+\_\+stream and \+\_\+buffer 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!get\+DurationP@{get\+DurationP}}
+\index{get\+DurationP@{get\+DurationP}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{get\+Duration\+P()}]{\setlength{\rightskip}{0pt plus 5cm}float Audio\+Manager\+::get\+DurationP (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a331f7e948fa9a1e1d1a49f1fb48112c4}{}\label{classAudioManager_a331f7e948fa9a1e1d1a49f1fb48112c4}
+
+
+return the actual duration as a float 
+
+\begin{DoxyReturn}{Returns}
+duration as a float which value is between 0 and 1 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+\_\+stream and \+\_\+buffer 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!get\+Status@{get\+Status}}
+\index{get\+Status@{get\+Status}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{get\+Status()}]{\setlength{\rightskip}{0pt plus 5cm}sf\+::\+Sound\+Source\+::\+Status Audio\+Manager\+::get\+Status (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a9ce4d8082a194bf780038a0aee942468}{}\label{classAudioManager_a9ce4d8082a194bf780038a0aee942468}
+
+
+return the status of the stream 
+
+\begin{DoxyReturn}{Returns}
+the scurrent status of the stream 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+\_\+stream 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!get\+Volume@{get\+Volume}}
+\index{get\+Volume@{get\+Volume}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{get\+Volume()}]{\setlength{\rightskip}{0pt plus 5cm}float Audio\+Manager\+::get\+Volume (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a4d8a968f1a5741d4c9faa79bbcb95c79}{}\label{classAudioManager_a4d8a968f1a5741d4c9faa79bbcb95c79}
+
+
+return the current volume 
+
+\begin{DoxyReturn}{Returns}
+the current volume of the stream 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+\_\+stream 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!load\+Music@{load\+Music}}
+\index{load\+Music@{load\+Music}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{load\+Music(std\+::string file\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::load\+Music (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{file\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a9ccfd245fc3afd6c9679a276c2670ce3}{}\label{classAudioManager_a9ccfd245fc3afd6c9679a276c2670ce3}
+
+
+given a file name, load the wanted file from the \hyperlink{classFileManager}{File\+Manager} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & name of the file to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+\_\+fmanager and \hyperlink{classAudioManager_a739a57d9db42dda76559f8644701ce2b}{load\+Music\+From\+Folder()} 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!load\+Music\+From\+Folder@{load\+Music\+From\+Folder}}
+\index{load\+Music\+From\+Folder@{load\+Music\+From\+Folder}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{load\+Music\+From\+Folder(std\+::string folder\+Path, bool it\+Sub\+Folders=true)}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::load\+Music\+From\+Folder (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{folder\+Path, }
+\item[{bool}]{it\+Sub\+Folders = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a739a57d9db42dda76559f8644701ce2b}{}\label{classAudioManager_a739a57d9db42dda76559f8644701ce2b}
+
+
+given a folder path and a boolean, call the associated method of the \hyperlink{classFileManager}{File\+Manager} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em folder\+Path} & path to the folder to load the files from. \\
+\hline
+{\em it\+Sub\+Folders} & while true, allow tht \hyperlink{classFileManager}{File\+Manager} to iterate the sub folders in order to load files. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+\_\+fmanager and \hyperlink{classAudioManager_a9ccfd245fc3afd6c9679a276c2670ce3}{load\+Music()} 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!next@{next}}
+\index{next@{next}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{next()}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::next (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a85dcceef2457dbe3bab535a196939ee3}{}\label{classAudioManager_a85dcceef2457dbe3bab535a196939ee3}
+
+
+play the next audio file 
+
+\begin{DoxySeeAlso}{See also}
+\+\_\+stream and \+\_\+fmanagerplay the \hyperlink{classAudioManager_a85dcceef2457dbe3bab535a196939ee3}{next} song 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!pause@{pause}}
+\index{pause@{pause}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{pause()}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::pause (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a717679472d89e8cab81defcb217bc797}{}\label{classAudioManager_a717679472d89e8cab81defcb217bc797}
+
+
+pause the audio file loaded 
+
+\begin{DoxySeeAlso}{See also}
+\+\_\+streampause reading buffer by calling the Sound\+Stream\+::pause() method 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!play@{play}}
+\index{play@{play}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{play()}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::play (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a0368c3d88f8a10260beee3f7c241e826}{}\label{classAudioManager_a0368c3d88f8a10260beee3f7c241e826}
+
+
+play the audio file loaded 
+
+\begin{DoxySeeAlso}{See also}
+\+\_\+streamplay the buffer by calling the Sound\+Stream\+::play() method 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!prev@{prev}}
+\index{prev@{prev}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{prev()}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::prev (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a52f9fea4eb26acfa96272953483e88d9}{}\label{classAudioManager_a52f9fea4eb26acfa96272953483e88d9}
+
+
+play the previous audio file 
+
+\begin{DoxySeeAlso}{See also}
+\+\_\+stream and \+\_\+fmanagerplay the previous song 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!seek@{seek}}
+\index{seek@{seek}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{seek(sf\+::\+Time t)}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::seek (
+\begin{DoxyParamCaption}
+\item[{sf\+::\+Time}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a92ce12738c28d9fbe99539976a1959bc}{}\label{classAudioManager_a92ce12738c28d9fbe99539976a1959bc}
+
+
+seek to the desired time by calling the \hyperlink{classSoundStream_ad6d518aee983bc841767e884645bac8a}{Sound\+Stream\+::seek()} method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: sf\+::\+Time object to indicate the desired duration to start the buffer from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+\_\+streamseek to the desired time by calling the \hyperlink{classSoundStream_ad6d518aee983bc841767e884645bac8a}{Sound\+Stream\+::seek()} method 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!seek@{seek}}
+\index{seek@{seek}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{seek(const float \&t)}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::seek (
+\begin{DoxyParamCaption}
+\item[{const float \&}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a63bca3852ff5b316fa72e56c3f999e8e}{}\label{classAudioManager_a63bca3852ff5b316fa72e56c3f999e8e}
+
+
+seek to the desired time by calling the \hyperlink{classSoundStream_ad6d518aee983bc841767e884645bac8a}{Sound\+Stream\+::seek()} method (after a little conversion from float to sf\+::\+Time). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: float, 0 to 1 reprensenting the offset ratio you want to seek to \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+\_\+stream and \+\_\+buffer 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!set\+Volume@{set\+Volume}}
+\index{set\+Volume@{set\+Volume}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{set\+Volume(const float \&t)}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::set\+Volume (
+\begin{DoxyParamCaption}
+\item[{const float \&}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a716945a9f65dc8b4cb83d1b034ac16dc}{}\label{classAudioManager_a716945a9f65dc8b4cb83d1b034ac16dc}
+
+
+change the volume in the \+\_\+stream properties 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: float, 0 to 100 \% of the max volume, 0 to mute \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+\_\+stream and \+\_\+buffer 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!stop@{stop}}
+\index{stop@{stop}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{stop()}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_a9d9d7ef0f5570ab1269ad54358cd3052}{}\label{classAudioManager_a9d9d7ef0f5570ab1269ad54358cd3052}
+
+
+stop the audio file loaded 
+
+\begin{DoxySeeAlso}{See also}
+\+\_\+streamstop reading buffer by calling the Sound\+Stream\+::stop() method 
+\end{DoxySeeAlso}
+\index{Audio\+Manager@{Audio\+Manager}!update@{update}}
+\index{update@{update}!Audio\+Manager@{Audio\+Manager}}
+\subsubsection[{update()}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Manager\+::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAudioManager_af342d01281d35deac6df2f5fa729c0ef}{}\label{classAudioManager_af342d01281d35deac6df2f5fa729c0ef}
+
+
+public update mainly for moduleslike \hyperlink{classSoundWave}{Sound\+Wave} 
+
+\begin{DoxySeeAlso}{See also}
+\+\_\+wave and \+\_\+stream 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+header/Audio\+Manager.\+h\item 
+src/Audio\+Manager.\+cpp\end{DoxyCompactItemize}
